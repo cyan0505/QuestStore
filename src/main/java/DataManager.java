@@ -37,13 +37,13 @@ public class DataManager {
         }
 
         for (int i=1; i<columnsNumber ; i++){
-            String value = view.getAnswerAsString("Col value: ");
+            String value = view.getAnswerAsString("Col " + rsmd.getColumnName(i+1) + " value: ");
             colValues.append("'" + value + "'");
             if (i < columnsNumber - 1) {
                 colValues.append(", ");
             }
         }
-        
+
         String sql = "INSERT INTO " + table + "(" + colNames + ") VALUES (" + colValues + ");";
         stmt.executeUpdate(sql);
         System.out.println("Row added");
