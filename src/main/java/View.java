@@ -12,9 +12,7 @@ public class View {
     }
 
     public void printMenu() {
-        List<String> menu = Arrays.asList("Insert row to table.", "delete row", "select * from table",
-                "Show full name and phone number of applicants with given email", "Add applicant and show his row", "Update applicants phone number, and show it",
-                "Delete applicants with given email", "Advance search");
+        List<String> menu = Arrays.asList("Insert row to table.", "delete row", "select * from table");
         System.out.printf("%nWhat would you like to do:%n");
         int index = 1;
         for (String menuItem : menu) {

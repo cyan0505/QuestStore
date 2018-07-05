@@ -20,27 +20,30 @@ public class DataManager {
         }
     }
 
-    public void insertRow(String table, int intCol) throws SQLException {
-        int colCount = intCol;
+    public void insertRow(String table) throws SQLException {
         StringBuilder colNames = new StringBuilder();
         StringBuilder colValues = new StringBuilder();
 
-        for (int i=0; i<colCount; i++){
-            String col = view.getAnswerAsString("Col name: ");
-            colNames.append(col);
-            if (i < colCount - 1) {
+        stmt = c.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * FROM " + table + ";" );
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+
+        for (int i = 2; i <= columnsNumber; i++) {
+            colNames.append(rsmd.getColumnName(i));
+            if (i< columnsNumber){
                 colNames.append(", ");
             }
+        }
+
+        for (int i=1; i<columnsNumber ; i++){
             String value = view.getAnswerAsString("Col value: ");
             colValues.append("'" + value + "'");
-            if (i < colCount - 1) {
+            if (i < columnsNumber - 1) {
                 colValues.append(", ");
             }
         }
-        System.out.println(colNames);
-        System.out.println(colValues);
-
-        stmt = c.createStatement();
+        
         String sql = "INSERT INTO " + table + "(" + colNames + ") VALUES (" + colValues + ");";
         stmt.executeUpdate(sql);
         System.out.println("Row added");

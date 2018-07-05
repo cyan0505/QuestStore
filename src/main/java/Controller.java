@@ -15,8 +15,7 @@ public class Controller {
         switch (number) {
             case 1:
                 String table = view.getAnswerAsString("table: ");
-                int colCOunt = view.getAnswerAsInt("columnsCount: ");
-                dataManager.insertRow(table, colCOunt);
+                dataManager.insertRow(table);
                 break;
             case 2:
                 String table2 = view.getAnswerAsString("table: ");
