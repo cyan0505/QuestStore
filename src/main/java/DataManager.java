@@ -12,7 +12,7 @@ public class DataManager {
 
     private void loadDatabase() {
         try {
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/QuestStore", "postgres", "yakuza06"); // set user and password
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/QuestStore", "postgres", "srodkowy13"); // set user and password
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -44,7 +44,7 @@ public class DataManager {
             }
         }
 
-        String sql = "INSERT INTO " + table + "(" + colNames + ") VALUES (" + colValues + ");";
+        String sql = "INSERT INTO " + table + " VALUES (DEFAULT, " + colValues + ");";
         stmt.executeUpdate(sql);
         System.out.println("Row added");
         System.out.println();
