@@ -1,3 +1,6 @@
+import Controller.Controller;
+import View.View;
+
 import java.sql.SQLException;
 
 public class Main {

@@ -1,18 +1,21 @@
+package Model;
+
 import java.sql.*;
+import View.*;
 
 public class DataManager {
     private View view;
     private Connection c;
     private Statement stmt;
 
-    DataManager() {
+    public DataManager() {
         view = new View();
         loadDatabase();
     }
 
     private void loadDatabase() {
         try {
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/QuestStore", "postgres", "srodkowy13"); // set user and password
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/QuestStore", "postgres", "yakuza06"); // set user and password
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -28,16 +31,32 @@ public class DataManager {
         ResultSet resultSet = stmt.executeQuery("SELECT * FROM " + table + ";" );
         ResultSetMetaData rsmd = resultSet.getMetaData();
         int columnsNumber = rsmd.getColumnCount();
+        int columnCounter=0;
+        int firstColToFill=0;
 
-        for (int i = 2; i <= columnsNumber; i++) {
-            colNames.append(rsmd.getColumnName(i));
-            if (i< columnsNumber){
+        for (int i = 1; i <= columnsNumber; i++) {
+            if (!rsmd.getColumnName(i).toLowerCase().contains("id".toLowerCase())){
+                colNames.append(rsmd.getColumnName(i));
+                columnCounter++;
+            }
+            if (i< columnsNumber && !rsmd.getColumnName(i).toLowerCase().contains("id".toLowerCase())){
                 colNames.append(", ");
             }
         }
+        System.out.println(colNames);
 
-        for (int i=1; i<columnsNumber ; i++){
-            String value = view.getAnswerAsString("Col " + rsmd.getColumnName(i+1) + " value: ");
+
+        for (int i = 1; i <= columnsNumber; i++) {
+            if (!rsmd.getColumnName(i).toLowerCase().contains("id".toLowerCase())){
+                firstColToFill = i;
+                break;
+            }
+        }
+        System.out.println("first col index: " + firstColToFill + " max columns: " + columnsNumber);
+
+
+        for (int i=firstColToFill; i<columnsNumber+1 ; i++){
+            String value = view.getAnswerAsString("Col " + rsmd.getColumnName(i) + " value: ");
             colValues.append("'" + value + "'");
             if (i < columnsNumber - 1) {
                 colValues.append(", ");
