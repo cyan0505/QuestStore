@@ -452,13 +452,12 @@ cite, em {
 
 .bg {
   z-index:-1;
+  background-position-y: 60%;
   height: 100%;
   max-width: 1920px;
-  background-image: url("10.jpg");
+  background-image: url("9.jpg");
   background-repeat:no-repeat;
-  background-position:center-top;
   background-position-x: 50%;
-  background-position-y: 0%;
   background-attachment:fixed;
   display: fixed;
 }
