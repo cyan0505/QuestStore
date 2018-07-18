@@ -63,6 +63,55 @@ footer {
   width: 100%;
 }
 
+
+
+/*
+  ========================================
+  Cards
+  ========================================
+*/
+
+@media only screen and (min-width: 30em) {
+
+    .flex-container.perspective {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        perspective: 70em;
+        padding: 1% 6%;;
+    }
+
+    .card-container {
+        position: relative;
+        margin: 1%;
+        transform: rotateX(50deg);
+        box-shadow: 20px 20px 10px grey;
+    }
+    
+    
+    .card-container:hover {
+        transform: rotate(0deg) scale(1) translateY(10px);
+        transition: .5s all ease;
+        animation: simple 0.3s linear;
+        
+    }
+    
+    @keyframes simple {
+        0% {
+        transform: scale(0.8);
+        }
+        
+        50% {
+        transform: scale(0.9);    
+        }
+
+    }
+    
+}
+
+
+
+
 /*
   ========================================
   Grid
@@ -359,8 +408,9 @@ cite, em {
   transform: translate(-50%, 50%)
 }
 
+/*
 img {
-  /* border-radius: 6px; */
+   border-radius: 6px; 
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -369,6 +419,7 @@ img {
   padding: 20px;
 
 }
+*/
 
 .bg {
   z-index:-1;
