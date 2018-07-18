@@ -159,7 +159,7 @@ button {
   ========================================
 */
 
-h1, h3, h4, h5, p {
+h1, h4, h5, p {
 	margin-bottom: 22px;
   }
 
@@ -179,7 +179,8 @@ h2 {
 }
 
 h3 {
-  font-size: 21px;
+  font-size: 30px;
+  text-align: center;
 }
 
 h4 {
@@ -387,3 +388,64 @@ img {
   display: fixed;
 }
 
+/*
+  ========================================
+  table
+  ========================================
+*/
+th, td {
+  padding: 5px;
+  text-align: left;
+  color: wheat;
+}
+
+/*
+  ========================================
+  view profile
+  ========================================
+*/
+
+.item1, .item2, .item3{
+  border: 5px solid whitesmoke;
+  border-radius: 10px;
+}
+
+.item1 { 
+  grid-area: header; 
+  padding: 3px;
+}
+
+.item2 { 
+  grid-area: picture; 
+}
+.item3 { 
+  grid-area: user; 
+  padding: 20px;
+}
+img {
+  width: 80%;
+  height: 70%;
+  position: relative;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header'
+    'picture user user'
+    'picture user user';
+  /* grid-template-rows: auto;
+  grid-template-columns: auto; */
+  grid-gap: 10px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: 20%;
+  grid-column-gap: 20px; 
+}
+
+.grid-container > div {
+  text-align: center;
+  font-size: 30px;
+}
