@@ -477,7 +477,7 @@ cite, em {
 th, td {
   padding: 5px;
   text-align: left;
-  color: wheat;
+  color: whitesmoke;
 }
 
 /*
@@ -518,4 +518,15 @@ th, td {
   width: 80%;
   height: 70%;
   position: relative;
+}
+
+
+/*
+  ========================================
+  codecoolers profiles
+  ========================================
+*/
+
+.add-img, .delete-img{
+height: 10px;  
 }

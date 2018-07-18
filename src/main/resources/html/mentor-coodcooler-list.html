@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Quest Store</title>
+		<link rel="stylesheet" href="assets/stylesheets/main.css">
+		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">	
+		<script>
+			
+			function addRow() {
+				var $BTN = $('#export-btn');
+				var table = document.getElementById("myTable");
+				var row = table.insertRow(-1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3 = row.insertCell(2);
+				var cell4 = row.insertCell(3);
+				var cell5 = row.insertCell(4);
+				var cell6 = row.insertCell(5);
+				
+				// var t = btn.addEventListener(document.createElement("BUTTON"), deleteRow());
+				
+				cell1.innerHTML = "cell";
+				cell2.innerHTML = "cell";
+				cell3.innerHTML = "cell";
+				cell4.innerHTML = "cell";
+				cell5.innerHTML = "cell";
+				cell6.innerHTML = $BTN;
+				cell1.setAttribute('contentEditable', 'true');
+				cell2.setAttribute('contentEditable', 'true');
+				cell3.setAttribute('contentEditable', 'true');
+				cell4.setAttribute('contentEditable', 'true');
+				cell5.setAttribute('contentEditable', 'true');
+				
+				
+			}
+
+			function deleteRow(row){
+				if(ConfirmDelete()){
+					var p=row.parentNode.parentNode;
+         		p.parentNode.removeChild(p);
+				}
+			}
+
+			function ConfirmDelete(){
+				var x = confirm("Are you sure you want to delete?");
+				if (x)
+					return true;
+				else
+					return false;
+			}
+
+
+		</script>
+
+	</head>
+	
+    <body class="bg">
+		<div>
+			<header class="primary-header">
+				<h1 >Exp: 			Coins:			</h1>
+			</header>
+
+			<section class="hero row">
+				<div class="navbar" id="myNavbar">
+					<div class="primary-nav-left">
+						<a href="main-mentor.html" class="btn active">main</a>
+						<a href="profile-mentor.html" class="btn">profile</a>
+						<a href="contact.html" class="btn">contact</a>
+					</div>
+					<div class="primary-nav-right">
+						<a href="store-mentor.html" class="btn">store</a>
+						<a href="quests-mentor.html" class="btn">quests</a>
+						<a href="class-mentor.html" class="btn">class</a>
+						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+					</div>
+				</div>
+				<div>
+					<h2><br><br><br>Welcome traveler...</h1><br>
+				</div>
+
+			</section>
+
+			<div class="profile">
+					<h3>Codecoolers</h3>
+					<div></div>
+			</div>
+
+			<div class="flex-container">
+				<table class="info" id="myTable">
+				
+					<tr>
+						<th>id</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>login</th>
+						<th>class</th>
+						<th>
+							<button onclick="addRow()">
+								<img src="assets/stylesheets/plus.png" class="add-img">
+							</button>
+						</th>
+					</tr>
+			
+					<tr>
+						<td contenteditable="true">Row2 cell1</td>
+						<td contenteditable="true">Row2 cell2</td>
+						<td contenteditable="true">Row2 cell3</td>
+						<td contenteditable="true">Row2 cell4</td>
+						<td contenteditable="true">Row2 cell5</td>
+						<td>
+							<button onclick="deleteRow(this)">
+								<img src="assets/stylesheets/delete.png" class="delete-img">
+							</button>
+						</td>
+					</tr>
+					<tr>
+						<td contenteditable="true">Row3 cell1</td>
+						<td contenteditable="true">Row3 cell2</td>
+						<td contenteditable="true">Row3 cell3</td>
+						<td contenteditable="true">Row3 cell4</td>
+						<td contenteditable="true">Row3 cell5</td>
+						<td>
+							<button onclick="deleteRow(this)">
+								<img src="assets/stylesheets/delete.png" class="delete-img">
+							</button>
+						</td>
+					</tr>
+				</table>
+
+				
+		
+		</div>
+
+			<!-- <div id="table" class="table-editable">
+				<span class="table-add glyphicon glyphicon-plus"></span>
+				<table class="table">
+				  <tr>
+					<th>Name</th>
+					<th>Value</th>
+					<th></th>
+					<th></th>
+				  </tr>
+				  <tr>
+					<td contenteditable="true">Stir Fry</td>
+					<td contenteditable="true">stir-fry</td>
+					<td>
+					  <span class="table-remove glyphicon glyphicon-remove"></span>
+					</td>
+					<td>
+					  <span class="table-up glyphicon glyphicon-arrow-up"></span>
+					  <span class="table-down glyphicon glyphicon-arrow-down"></span>
+					</td>
+				  </tr> -->
+				  <!-- This is our clonable table line -->
+				  <!-- <tr class="hide">
+					<td contenteditable="true">Untitled</td>
+					<td contenteditable="true">undefined</td>
+					<td>
+					  <span class="table-remove glyphicon glyphicon-remove"></span>
+					</td>
+					<td>
+					  <span class="table-up glyphicon glyphicon-arrow-up"></span>
+					  <span class="table-down glyphicon glyphicon-arrow-down"></span>
+					</td>
+				  </tr>
+				</table>
+			  </div>
+			  
+			  <button id="export-btn" class="btn btn-primary">Export Data</button>
+			  <p id="export"></p>
+			</div> -->
+
+			<footer class="primary-footer">
+					<small>&copy; Ekipa mocna</small>
+				<nav>
+						<a href="index.html">Home</a>
+						<a href="speakers.html">About</a>
+						<a href="schedule.html">PlaceHolder</a>
+						<a href="venue.html">PlaceHolder</a>
+						<a href="contact.html">PlaceHolder</a>
+					</nav>
+			</footer>
+		</div>
+		<script>
+			/* Toggle between adding and removing the "responsive" class to the navbar when the user clicks on the icon */
+			function myFunction() {
+				var x = document.getElementById("myNavbar");
+				if (x.className === "navbar") {
+					x.className += " responsive";
+				} else {
+					x.className = "navbar";
+				}
+			}
+
+			// var header = document.getElementById("myDIV");
+			// var btns = header.getElementsByClassName("btn");
+			// for (var i = 0; i < btns.length; i++) {
+			// 	btns[i].addEventListener("click", function() {
+			// 		var current = document.getElementsByClassName("active");
+			// 		current[0].className = current[0].className.replace(" active", "");
+			// 		this.className += " active";
+			// 	});
+			// }
+		</script>
+ 	</body>
+</html>
