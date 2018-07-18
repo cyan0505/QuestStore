@@ -14,26 +14,34 @@
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="index.html" class="btn active">main</a>
+						<a href="main-codecooler.html" class="btn">main</a>
 						<a href="profile.html" class="btn">profile</a>
 						<a href="contact.html" class="btn">contact</a>
+					</div>
+					<div class="primary-nav-right">
+						<a href="store-codecooler.html" class="btn active">store</a>
+						<a href="quests-codecooler.html" class="btn">quests</a>
+						<a href="wallet-codecooler.html" class="btn">wallet</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
 				<div>
-					<h2><br><br><br>Get Your artifacts today...</h1><br>
-					<a href="index.html" class="btn btn-alt">Login</style></a>
+					<h2><br><br><br>Welcome traveler...</h1><br>
 				</div>
 
 			</section>
 
-			<div><h1 class="title">Jakies newsy...</h1></div>
+			<section class="container title">
+					<h1>Add or edit a artifacts!<br></h1>
+					<button class="btn">Add-quest</button>
+					<button class="btn">Save</button>
+				</section>
 
-			<!-- <section class="grid">
+			<section class="grid">
 				<div class="container"><img src="assets/stylesheets/placeHolder.png" alt="przejebany dps"></div>
 				<div class="container"><img src="assets/stylesheets/placeHolder.png" alt="przejebany dps"></div>
 				<div class="container"><img src="assets/stylesheets/placeHolder.png" alt="przejebany dps"></div>
-			</section> -->
+			</section>
 
 			<footer class="primary-footer">
 					<small>&copy; Ekipa mocna</small>
@@ -55,6 +63,17 @@
 				} else {
 					x.className = "navbar";
 				}
+			}
+
+			// Add active class to the current button (highlight it)
+			var header = document.getElementById("myNavbar");
+			var btns = header.getElementsByClassName("btn");
+			for (var i = 0; i < btns.length; i++) {
+				btns[i].addEventListener("click", function() {
+					var current = document.getElementsByClassName("active");
+					current[0].className = current[0].className.replace(" active", "");
+					this.className += " active";
+				});
 			}
 		</script>
  	</body>
