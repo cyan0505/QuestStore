@@ -18,6 +18,31 @@
             }
         }
     }
+            
+            function validateLogin() {
+                var userName = document.loginForm.uname.value;
+                var pass = document.loginForm.psw.value;
+                
+                var codecoolerName = "test";
+                var codecoolerPass = "test";
+                
+                var adminName = "mentor";
+                var adminPass = "mentor";
+                
+                if ((userName == codecoolerName) && (pass == codecoolerPass)) {
+                    window.location = "main-codecooler.html";
+                    return false;
+                }
+                if ((userName == adminName) && (pass == adminPass)) {
+                    window.location = "main-mentor.html";
+                    return false;
+                }
+                else {
+                    alert ("Login was unsuccessful!");
+                }
+            }
+            
+            
         </script>
         
         
@@ -47,7 +72,7 @@
 class="close" title="Close Modal">&times;</span>
 
   <!-- Modal Content -->
-  <form class="modal-content animate" action="/action_page.php">
+  <form class="modal-content animate" name="loginForm" onSubmit="return validateLogin();">
     <div class="imgcontainer">
       <img src="assets/stylesheets/Logo_avatar.png" alt="Avatar" class="avatar">
     </div>
