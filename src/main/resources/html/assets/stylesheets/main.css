@@ -350,6 +350,13 @@ cite, em {
     right: 0;
     bottom: 0;
   }
+  /* .item2{
+    width: 0%;
+  }
+  .item3{
+    width: 100%;
+    position: center;
+  } */
   .navbar.responsive a {
     float: none;
     display: block;
@@ -362,17 +369,6 @@ cite, em {
   top: 50%;
   left: 50%;
   transform: translate(-50%, 50%)
-}
-
-img {
-  /* border-radius: 6px; */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 400px;
-  width: 400px;
-  padding: 20px;
-
 }
 
 .bg {
@@ -405,47 +401,36 @@ th, td {
   ========================================
 */
 
-.item1, .item2, .item3{
-  border: 5px solid whitesmoke;
-  border-radius: 10px;
-}
-
-.item1 { 
-  grid-area: header; 
-  padding: 3px;
-}
-
-.item2 { 
-  grid-area: picture; 
-}
-.item3 { 
-  grid-area: user; 
-  padding: 20px;
-}
-img {
-  width: 80%;
-  height: 70%;
-  position: relative;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'header header header'
-    'picture user user'
-    'picture user user';
-  /* grid-template-rows: auto;
-  grid-template-columns: auto; */
-  grid-gap: 10px;
-  width: 900px;
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2%;
   margin-bottom: 20%;
-  grid-column-gap: 20px; 
 }
 
-.grid-container > div {
+.profile {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  width: 200px;
+  justify-content: center;
+}
+
+.avatar, .info {
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  margin: 4px;
+  padding: 20px;
   text-align: center;
   font-size: 30px;
+}
+
+.avatar-img {
+  width: 80%;
+  height: 70%;
+  position: relative;
 }
