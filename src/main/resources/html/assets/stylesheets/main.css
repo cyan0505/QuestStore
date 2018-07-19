@@ -137,15 +137,6 @@ footer {
     
 }
 
-
-
-button {
-  background: none;
-  font-size: 20;
-  font-family: 'Jim Nightshade', cursive;
-}
-
-
 /*
   ========================================
   Grid
@@ -171,9 +162,8 @@ button {
   background-position: center;
   position: fixed;
   text-align: right;
-  top: 0px;
-  left: 0px;
   width: 100%;
+  background-size: cover;
 }
 
 .container {
@@ -193,6 +183,7 @@ button {
   background-image: url("Logo_nav_bottom.png");
   background-repeat:no-repeat;
   background-position: center;
+  background-size: cover;
 }
 
 .primary-footer a{
@@ -286,12 +277,10 @@ cite, em {
 
 .row {
   background-image: url("16.jpg");
-  height: auto;
-  background-size: cover;
-  /* background-position-y: 20%;   */
-  /* background-position-x: 50%; */
+  height: 400px;
   background-repeat:no-repeat;
-  animation: breath 20s linear infinite;  border-radius: 6px;
+  animation: breath 20s linear infinite;
+  width: 100%;
 }
 
 .row2 {
@@ -454,12 +443,14 @@ cite, em {
   z-index:-1;
   background-position-y: 60%;
   height: 100%;
-  max-width: 1920px;
+  width: 100%;
+  background-size: cover;
   background-image: url("9.jpg");
   background-repeat:no-repeat;
   background-position-x: 50%;
   background-attachment:fixed;
   display: fixed;
+  
 }
 
 /*
@@ -471,57 +462,4 @@ th, td {
   padding: 5px;
   text-align: left;
   color: wheat;
-}
-
-/*
-  ========================================
-  view profile
-  ========================================
-*/
-
-.item1, .item2, .item3{
-  border: 5px solid whitesmoke;
-  border-radius: 10px;
-}
-
-.item1 { 
-  grid-area: header; 
-  padding: 3px;
-}
-
-.item2 { 
-  grid-area: picture; 
-}
-
-.item3 { 
-  grid-area: user; 
-  padding: 20px;
-}
-
-.img {
-  width: 80%;
-  height: 70%;
-  position: relative;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'header header header'
-    'picture user user'
-    'picture user user';
-  /* grid-template-rows: auto;
-  grid-template-columns: auto; */
-  grid-gap: 10px;
-  width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2%;
-  margin-bottom: 20%;
-  grid-column-gap: 20px; 
-}
-
-.grid-container > div {
-  text-align: center;
-  font-size: 30px;
 }
