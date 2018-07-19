@@ -23,9 +23,8 @@
 				cell3.innerHTML = "cell";
 				cell4.innerHTML = "cell";
 				cell5.innerHTML = "cell";
-				cell6.innerHTML = "<button onclick='deleteRow(this)'" + 
-								"<img src='assets/stylesheets/delete.png' class='delete-img'>" +
-							"</button>";
+				cell6.innerHTML = "<button onclick='deleteRow(this)'" + "class='button-delete'>x" +
+								"</button>";
 
 				cell1.setAttribute('contentEditable', 'true');
 				cell2.setAttribute('contentEditable', 'true');
@@ -95,9 +94,7 @@
 						<th>login</th>
 						<th>class</th>
 						<th>
-							<button onclick="addRow()">
-								<img src="assets/stylesheets/plus.png" class="add-img">
-							</button>
+							<button onclick="addRow()" class="button-add">+</button>
 						</th>
 					</tr>
 			
@@ -108,9 +105,7 @@
 						<td contenteditable="true">Row2 cell4</td>
 						<td contenteditable="true">Row2 cell5</td>
 						<td>
-							<button onclick="deleteRow(this)">
-								<img src="assets/stylesheets/delete.png" class="delete-img">
-							</button>
+							<button onclick="deleteRow(this)" class="button-delete">x</button>
 						</td>
 					</tr>
 					<tr>
@@ -120,9 +115,7 @@
 						<td contenteditable="true">Row3 cell4</td>
 						<td contenteditable="true">Row3 cell5</td>
 						<td>
-							<button onclick="deleteRow(this)">
-								<img src="assets/stylesheets/delete.png" class="delete-img">
-							</button>
+							<button onclick="deleteRow(this)" class="button-delete">x</button>
 						</td>
 					</tr>
 				</table>
