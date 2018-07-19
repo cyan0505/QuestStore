@@ -724,26 +724,30 @@ input[type=submit]:hover {
 
 .news-container {
     display: flex;
-    justify-content: space-around;
     flex-flow: row wrap;
+    justify-content: space-around;
     color: white;
 }
 
 .news {
-    width: 30%;
-    margin: 1.5%;
+    flex: 1;
+    margin: 1em;
+    padding: 0.5em;
+    border: 1px solid red;
 }
 
 
 .news p {
-    font-size: 26px;
+    font-size: 26px;  
 }
 
 .news h3 {
     font-size: 30px;
 }
 
-
-
-
+@media only and screen(max-width: 1200px) {
+    .news-container {
+        flex-direction: column;
+    }
+}
 
