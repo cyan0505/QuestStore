@@ -8,7 +8,7 @@
 		<script>
 			
 			function addRow() {
-				//var $BTN = $('#export-btn');
+
 				var table = document.getElementById("myTable");
 				var row = table.insertRow(-1);
 				var cell1 = row.insertCell(0);
@@ -33,7 +33,6 @@
 				cell4.setAttribute('contentEditable', 'true');
 				cell5.setAttribute('contentEditable', 'true');
 				
-				
 			}
 
 			function deleteRow(row){
@@ -44,14 +43,12 @@
 			}
 
 			function ConfirmDelete(){
-				var x = confirm("Are you sure you want to delete?");
-				if (x)
+				var sure = confirm("Are you sure you want to delete?");
+				if (sure)
 					return true;
 				else
 					return false;
 			}
-
-
 		</script>
 
 	</head>
@@ -129,10 +126,7 @@
 					</tr>
 				</table>
 
-				
-		
 		</div>
-
 
 			<footer class="primary-footer">
 					<small>&copy; Ekipa mocna</small>
@@ -145,26 +139,6 @@
 					</nav>
 			</footer>
 		</div>
-		<script>
-			/* Toggle between adding and removing the "responsive" class to the navbar when the user clicks on the icon */
-			function myFunction() {
-				var x = document.getElementById("myNavbar");
-				if (x.className === "navbar") {
-					x.className += " responsive";
-				} else {
-					x.className = "navbar";
-				}
-			}
 
-			// var header = document.getElementById("myDIV");
-			// var btns = header.getElementsByClassName("btn");
-			// for (var i = 0; i < btns.length; i++) {
-			// 	btns[i].addEventListener("click", function() {
-			// 		var current = document.getElementsByClassName("active");
-			// 		current[0].className = current[0].className.replace(" active", "");
-			// 		this.className += " active";
-			// 	});
-			// }
-		</script>
  	</body>
 </html>
