@@ -91,13 +91,36 @@ function myFunction() {
 }
 
 
+//function addElement() {
+//
+//    var img = document.createElement("img");  
+//    img.setAttribute("src", "assets/stylesheets/Card_artefact.jpg");    
+//    document.getElementById('new-quests').appendChild(img);    
+//}
+
 function addElement() {
 
-    var img = document.createElement("img");  
-    img.setAttribute("src", "assets/stylesheets/Card_artefact.jpg");    
-    document.getElementById('new-quests').appendChild(img);    
+    
+    var cardContainer = document.createElement("div");
+    cardContainer.setAttribute("class", "card-container");
+    cardContainer.innerHTML = "<div class='card-title'>" + 
+                "<p contenteditable='true'>Card title</p>" +
+            "</div>" + 
+            "<div class='card-value'>" + 
+                "<p contenteditable='true'>10</p>" + 
+            "</div>" + 
+            "<img src='assets/stylesheets/Card_artefact.jpg'>" + 
+            "<div class='card-description'>" + 
+                "<p contenteditable='true'>Card description here</p>" + 
+            "</div>";
+    
+//    var my_div = document.getElementById('first-cards');
+//    document.body.insertBefore(cardContainer, my_div);
+    
+    
+    document.getElementById('new-quests').append(cardContainer);
+    
 }
-
 
 
 
