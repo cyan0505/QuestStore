@@ -79,7 +79,8 @@ footer {
         flex-wrap: wrap;
         justify-content: space-around;
         perspective: 70em;
-        padding: 1% 6%;;
+        padding: 1% 6%;
+        margin: 1%;
     }
 
     .card-container {
