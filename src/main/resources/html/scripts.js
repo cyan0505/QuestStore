@@ -91,3 +91,22 @@ function myFunction() {
 }
 
 
+function addElement() {
+
+    var img = document.createElement("img");  
+    img.setAttribute("src", "assets/stylesheets/Card_artefact.jpg");    
+    document.getElementById('new-quests').appendChild(img);    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
