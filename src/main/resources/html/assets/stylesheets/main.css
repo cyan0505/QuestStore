@@ -596,14 +596,6 @@ button {
   padding: 0;
   width: 180%;
 }
-/* .button-delete:hover{
-  background-image: url("delete.png");
-  border: none;
-  color: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-} */
 
 /* Add a hover effect for buttons */
 button:hover {
