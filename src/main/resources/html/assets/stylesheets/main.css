@@ -333,13 +333,13 @@ cite, em {
 
 .primary-nav-left{
   position: absolute;
-  top: 70px;
+  top: 90px;
   left: 16px;
 }
 
 .primary-nav-right{
   position: absolute;
-  top: 70px;
+  top: 90px;
   right: 16px;
 }
 
@@ -373,6 +373,8 @@ cite, em {
   font-size: 20px;
   padding: 3px;
   text-align: center;
+  margin-bottom: 25px;
+  margin-top: 25px;
   text-decoration: none;
 }
 
@@ -804,13 +806,13 @@ input[type=submit]:hover {
     flex-flow: row wrap;
     justify-content: space-around;
     color: white;
+    margin-bottom: 5%;
 }
 
 .news {
     flex: 1;
     margin: 1em;
     padding: 0.5em;
-    border: 1px solid red;
 }
 
 
@@ -822,7 +824,7 @@ input[type=submit]:hover {
     font-size: 30px;
 }
 
-@media only and screen(max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
     .news-container {
         flex-direction: column;
     }
