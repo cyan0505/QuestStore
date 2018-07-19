@@ -425,6 +425,13 @@ cite, em {
     right: 0;
     bottom: 0;
   }
+  /* .item2{
+    width: 0%;
+  }
+  .item3{
+    width: 100%;
+    position: center;
+  } */
   .navbar.responsive a {
     float: none;
     display: block;
@@ -462,4 +469,44 @@ th, td {
   padding: 5px;
   text-align: left;
   color: wheat;
+}
+
+/*
+  ========================================
+  view profile
+  ========================================
+*/
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: 20%;
+}
+
+.profile {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  width: 200px;
+  justify-content: center;
+}
+
+.avatar, .info {
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  margin: 4px;
+  padding: 20px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.avatar-img {
+  width: 80%;
+  height: 70%;
+  position: relative;
 }
