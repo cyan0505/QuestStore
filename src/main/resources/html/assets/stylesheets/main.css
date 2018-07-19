@@ -715,8 +715,33 @@ input[type=submit]:hover {
 
 
 
+  /*
+  ========================================
+  News at the page
+  ========================================
+*/
 
 
+.news-container {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    color: white;
+}
+
+.news {
+    width: 30%;
+    margin: 1.5%;
+}
+
+
+.news p {
+    font-size: 26px;
+}
+
+.news h3 {
+    font-size: 30px;
+}
 
 
 
