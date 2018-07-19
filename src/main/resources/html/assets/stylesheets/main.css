@@ -159,7 +159,7 @@ footer {
 
 .primary-header {
   z-index: 5;
-  background-image: url("15.jpg");
+  background-image: url("14.jpg");
   background-repeat:no-repeat;
   background-position: center;
   position: fixed;
@@ -182,9 +182,9 @@ footer {
 
 .primary-footer {
   color: #9cf5e1;
-  font-size: 14px;
+  font-size: 23px;
   text-align: center;
-  background-image: url("Logo_nav_bottom.png");
+  background-image: url("14.jpg");
   background-repeat:no-repeat;
   background-position: center;
   background-size: cover;
