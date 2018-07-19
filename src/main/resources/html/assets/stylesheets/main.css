@@ -718,13 +718,113 @@ span.psw {
 }
 
 
+  /*
+  ========================================
+  Contact page
+  ========================================
+*/
+
+
+.contact-message{
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 5%;
+    color: white;
+    font-size: 20px;
+}
+
+.contact-message form{
+    border: none;
+}
+
+.contact-message form input{
+    font-family: 'Jim Nightshade', cursive;
+    font-size: 20px;
+}
+
+.contact-message form textarea {
+    font-family: 'Jim Nightshade', cursive;
+    font-size: 20px;
+}
+
+.contact-message p{
+    font-size: 20px;
+    margin-top: 50px;
+    border-bottom: 1px solid black;
+}
+
+#contact-map {
+    margin-top: 30px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#contact-map p{
+    font-size: 20px;
+}
+
+
+input[type=text], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+
+
+}
+
+input[type=submit] {
+    background: none;
+    color: white;
+    padding: 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background: #A9A9A9;
+}
 
 
 
+  /*
+  ========================================
+  News at the page
+  ========================================
+*/
 
 
+.news-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    color: white;
+}
+
+.news {
+    flex: 1;
+    margin: 1em;
+    padding: 0.5em;
+    border: 1px solid red;
+}
 
 
+.news p {
+    font-size: 26px;  
+}
 
+.news h3 {
+    font-size: 30px;
+}
 
+@media only and screen(max-width: 1200px) {
+    .news-container {
+        flex-direction: column;
+    }
+}
 
