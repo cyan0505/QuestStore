@@ -56,8 +56,14 @@ public class Controller {
     }
 
     public boolean checkLogin(String login){
-        
+//        method from dao
+        return false;
     }
+
+    public boolean checkPassword(String password){
+        return false;
+    }
+
 
 
 
