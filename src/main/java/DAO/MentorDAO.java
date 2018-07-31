@@ -4,50 +4,30 @@ import BuisnessLogic.Artifact;
 import BuisnessLogic.Quest;
 import Connection.DatabaseConnection;
 import Model.Codecooler;
+import Model.Mentor;
+
 import java.sql.*;
 
 import java.sql.Connection;
 
 public class MentorDAO {
 
-    public void addCodecooler(Codecooler codecooler) throws SQLException {
 
+    public void addMentor(Mentor mentor) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
         PreparedStatement stmt = connection.prepareStatement("");
 
-        stmt.setString(1, codecooler);
         stmt.setString();
 
+
         stmt.executeUpdate();
-
     }
 
 
-    public void addQuest(Quest quest) {
-
-
-    }
-
-
-    public void addArtifact(Artifact artifact) {
-
-    }
-
-
-    public Codecooler getCodecooler(int id) {
+    public Mentor getMentor(int id) {
         return null;
     }
-
-    public Quest getQuest(int id) {
-        return null;
-    }
-
-
-    public Artifact getArtifact(int id) {
-        return  null;
-    }
-
 
 
 
