@@ -16,4 +16,15 @@ public class Group {
         this.codecoolerList.add(codecoolerCreatingGroup);
     }
 
+    public List<Codecooler> getCodecoolerList() {
+        return codecoolerList;
+    }
+
+    public Artifact getArtifactGroupWantsToBuy() {
+        return artifactGroupWantsToBuy;
+    }
+
+    public void addCodecoolerToGroup(Codecooler codecooler){
+        this.codecoolerList.add(codecooler);
+    }
 }
