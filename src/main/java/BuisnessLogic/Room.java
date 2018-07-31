@@ -34,11 +34,11 @@ public class Room {
         this.name = name;
     }
 
-    public void setCodecoolerList(List<Codecooler> codecoolerList) {
-        this.codecoolerList = codecoolerList;
+    public void addCodecoolerToList(Codecooler codecooler) {
+        this.codecoolerList.add(codecooler);
     }
 
-    public void setMentorsList(List<Mentor> mentorsList) {
-        this.mentorsList = mentorsList;
+    public void addMentorToList(Mentor mentor) {
+        this.mentorsList.add(mentor);
     }
 }
