@@ -91,3 +91,69 @@ function myFunction() {
 }
 
 
+
+
+var counter = 0;
+
+function addQuest() {
+    
+    if (counter == 0 || counter % 3 == 0) {
+        var flexContainer = document.createElement("div");
+        flexContainer.className = "flex-container perspective";
+        flexContainer.id = "new-quests";
+        
+        container_div = document.getElementById('first-container');
+        document.body.insertBefore(flexContainer, container_div);
+        
+        counter++;
+           
+    }
+    
+    var cardContainer = document.createElement("div");
+    cardContainer.setAttribute("class", "card-container");
+    cardContainer.innerHTML = "<div class='card-title'>" + 
+                "<p contenteditable='true'>Card title</p>" +
+            "</div>" + 
+            "<div class='card-value'>" + 
+                "<p contenteditable='true'>10</p>" + 
+            "</div>" + 
+            "<img src='assets/stylesheets/Card_quest.jpg'>" + 
+            "<div class='card-description'>" + 
+                "<p contenteditable='true'>Card description here</p>" + 
+            "</div>";
+    
+    document.getElementById('new-quests').append(cardContainer);
+    
+}
+
+
+function addArtefact() {
+
+    
+    var cardContainer = document.createElement("div");
+    cardContainer.setAttribute("class", "card-container");
+    cardContainer.innerHTML = "<div class='card-title'>" + 
+                "<p contenteditable='true'>Card title</p>" +
+            "</div>" + 
+            "<div class='card-value'>" + 
+                "<p contenteditable='true'>10</p>" + 
+            "</div>" + 
+            "<img src='assets/stylesheets/Card_artefact.jpg'>" + 
+            "<div class='card-description'>" + 
+                "<p contenteditable='true'>Card description here</p>" + 
+            "</div>";
+    
+    
+    document.getElementById('new-quests').append(cardContainer);
+    
+}
+
+
+
+
+
+
+
+
+
+
