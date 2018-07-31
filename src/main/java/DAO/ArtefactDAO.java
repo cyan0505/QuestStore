@@ -13,9 +13,12 @@ public class ArtefactDAO {
     public void addArtifact(Artifact artifact) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        PreparedStatement stmt = connection.prepareStatement("INSERT ");
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO artifact (artefact_name, price, description, isgroup)");
 
-        stmt.setString();
+        stmt.setString(1, artifact);
+        stmt.setInt(2, artifact);
+        stmt.setString(3, artifact);
+        stmt.setBoolean(4, artifact);
 
         stmt.executeUpdate();
 
