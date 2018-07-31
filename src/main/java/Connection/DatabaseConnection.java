@@ -1,3 +1,5 @@
+package Connection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +20,7 @@ public class DatabaseConnection {
         return instance;
     }
 
-    public void getConnetion() {
+    public Connection getConnection() {
         try {
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/QuestStore", "postgres", "yakuza06"); // set user and password
         } catch (Exception e) {
@@ -26,6 +28,7 @@ public class DatabaseConnection {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
+        return c;
     }
 
     public void closeConnection() {
