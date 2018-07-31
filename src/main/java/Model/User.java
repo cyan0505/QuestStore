@@ -7,13 +7,15 @@ public abstract class User {
     private String login;
     private String password;
     private String email;
+    private String role;
 
-    public User(String firstName, String lastName, String login, String password, String email){
+    public User(String firstName, String lastName, String login, String password, String email, String role){
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
         this.email = email;
+        this.role = role;
     }
 
     public String getEmail() {
@@ -34,6 +36,10 @@ public abstract class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     public void setLastName(String lastName) {

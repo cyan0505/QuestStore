@@ -8,8 +8,8 @@ public class Codecooler extends User {
     private Integer exp;
     private Wallet inventory;
 
-    public Codecooler(String firstName, String lastName, String login, String password, String email){
-        super(firstName, lastName, login, password, email);
+    public Codecooler(String firstName, String lastName, String login, String password, String email, String role){
+        super(firstName, lastName, login, password, email, role);
         this.exp = 0;
         this.roomName = null;
         this.inventory = new Wallet();

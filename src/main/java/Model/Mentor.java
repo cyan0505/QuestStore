@@ -9,8 +9,8 @@ public class Mentor extends User{
 
     private List<Room> roomsAssignToMentor;
 
-    public Mentor(String firstName, String lastName, String login, String password, String email) {
-        super(firstName, lastName, login, password, email);
+    public Mentor(String firstName, String lastName, String login, String password, String email, String role) {
+        super(firstName, lastName, login, password, email, role);
         this.roomsAssignToMentor = new ArrayList<Room>();
     }
 
