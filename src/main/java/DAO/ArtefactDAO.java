@@ -13,7 +13,7 @@ public class ArtefactDAO {
     public void addArtifact(Artifact artifact) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        PreparedStatement stmt = connection.prepareStatement("");
+        PreparedStatement stmt = connection.prepareStatement("INSERT ");
 
         stmt.setString();
 
@@ -23,8 +23,14 @@ public class ArtefactDAO {
 
 
 
-    public Artifact getArtifact(int id) {
-        return  null;
+    public Artifact getArtifact(int id) throws SQLException {
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM artifact WHERE id='" + id + "');");
+
+        Artifact artifact = new Artifact();
+
+        return artifact;
     }
 
 

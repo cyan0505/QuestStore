@@ -8,11 +8,11 @@ public class Quest {
     private Boolean isDone;
     private Boolean isExtra;
 
-    public Quest(String name, String description, Integer reward, Boolean isDone, Boolean isExtra){
+    public Quest(String name, String description, Integer reward, Boolean isExtra){
         this.name = name;
         this.description = description;
         this.reward = reward;
-        this.isDone = isDone;
+        this.isDone = false;
         this.isExtra = isExtra;
     }
 

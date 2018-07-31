@@ -14,7 +14,8 @@ public class UserDAO {
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        PreparedStatement stmt = connection.prepareStatement("INSERT INTO user_table (first_name, last_name, login, password, email, role) values (?, ?, ?, ?, ?, ?)");
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO user_table (first_name, last_name," +
+                                                            "login, password, email, role) values (?, ?, ?, ?, ?, ?)");
 
         stmt.setString(1, user.getFirstName());
         stmt.setString(2, user.getLastName());
@@ -24,6 +25,8 @@ public class UserDAO {
         stmt.setString(6, user.getRole());
 
         stmt.executeUpdate();
+
+        connection.close();
 
     }
 
