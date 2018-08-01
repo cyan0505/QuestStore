@@ -95,27 +95,34 @@ public class MentorController implements HttpHandler {
         }
 
         if (method.equals("POST")) {
-            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody());
-            BufferedReader br = new BufferedReader(isr);
-            String formData = br.readLine();
+            String[] uri = Controller.parseFromData(httpExchange.getRequestURI().toString());
 
-            Map inputs = Controller.parseUserInfoFromData(formData);
+            if (uri[2].equals("add")) {
+                InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody());
+                BufferedReader br = new BufferedReader(isr);
+                String formData = br.readLine();
 
 
-            String firstName = inputs.get("firstName").toString();
-            String lastName = inputs.get("lastName").toString();
-            String login = inputs.get("login").toString();
-            String password = inputs.get("pass").toString();
-            String email = inputs.get("email").toString();
-            String role = "codecooler";
+                Map inputs = Controller.parseUserInfoFromData(formData);
 
-            Codecooler codecooler = new Codecooler(firstName, lastName, login, password, email, role);
 
-            try {
-                userDao.addUser(codecooler);
-            } catch (SQLException e) {
-                e.printStackTrace();
+                String firstName = inputs.get("firstName").toString();
+                String lastName = inputs.get("lastName").toString();
+                String login = inputs.get("login").toString();
+                String password = inputs.get("pass").toString();
+                String email = inputs.get("email").toString();
+                String role = "codecooler";
+
+                Codecooler codecooler = new Codecooler(firstName, lastName, login, password, email, role);
+
+                try {
+                    userDao.addUser(codecooler);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
+
+            if (uri[2].equals("edit")){}
 
         }
 
