@@ -30,7 +30,7 @@ public class MentorController implements HttpHandler {
 
         if(method.equals("GET")) {
 
-            String[] uri = parseFromData(httpExchange.getRequestURI().toString());
+            String[] uri = Controller.parseFromData(httpExchange.getRequestURI().toString());
 
             if(uri.length >= 3) {
 
@@ -77,7 +77,7 @@ public class MentorController implements HttpHandler {
                 BufferedReader br = new BufferedReader(isr);
                 String formData = br.readLine();
 
-                Map inputs = parseStudentInfoFromData(formData);
+                Map inputs = Controller.parseUserInfoFromData(formData);
 
 
                 String firstName = inputs.get("firstName").toString();
@@ -117,22 +117,9 @@ public class MentorController implements HttpHandler {
     }
 
 
-    private String[] parseFromData(String fromData) {
-        String[] pairs = fromData.split("/");
-        return pairs;
-    }
 
 
-    private Map<String, String> parseStudentInfoFromData(String fromData) throws UnsupportedEncodingException {
-        Map<String, String> map = new HashMap<>();
-        String[] pairs = fromData.split("&");
-        for(String pair : pairs) {
-            String[] keyValue = pair.split("=");
-            String value = new URLDecoder().decode(keyValue[1], "UTF-8");
-            map.put(keyValue[0], value);
-        }
 
-        return map;
-    }
+
 
 }

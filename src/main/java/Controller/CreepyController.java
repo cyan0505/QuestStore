@@ -30,13 +30,17 @@ public class CreepyController implements HttpHandler{
 
         if(method.equals("GET")) {
 
-            String[] uri = parseFromData(httpExchange.getRequestURI().toString());
+            String[] uri = Controller.parseFromData(httpExchange.getRequestURI().toString());
 
             if(uri.length >= 3) {
 
                 if(uri[2].equals("add_mentor")) {
 
 
+
+                }
+
+                if(uri[2].equals("add_room")) {
 
                 }
 
@@ -64,7 +68,7 @@ public class CreepyController implements HttpHandler{
             BufferedReader br = new BufferedReader(isr);
             String formData = br.readLine();
 
-            Map inputs = parseMentorInfoFromData(formData);
+            Map inputs = Controller.parseUserInfoFromData(formData);
 
 
             String firstName = inputs.get("firstName").toString();

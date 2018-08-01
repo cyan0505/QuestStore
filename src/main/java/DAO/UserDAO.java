@@ -29,7 +29,7 @@ public class UserDAO {
         connection.close();
 
     }
-    
+
     public void deleteUser(int id) throws SQLException {
 
         Connection connection = DatabaseConnection.getInstance().getConnection();

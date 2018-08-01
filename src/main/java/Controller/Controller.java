@@ -55,4 +55,22 @@ public class Controller implements HttpHandler {
         exchange.close();
     }
 
+    public static String[] parseFromData(String fromData) {
+        String[] pairs = fromData.split("/");
+        return pairs;
+    }
+
+
+    public static Map<String, String> parseUserInfoFromData(String fromData) throws UnsupportedEncodingException {
+        Map<String, String> map = new HashMap<>();
+        String[] pairs = fromData.split("&");
+        for(String pair : pairs) {
+            String[] keyValue = pair.split("=");
+            String value = new URLDecoder().decode(keyValue[1], "UTF-8");
+            map.put(keyValue[0], value);
+        }
+
+        return map;
+    }
+
 }
