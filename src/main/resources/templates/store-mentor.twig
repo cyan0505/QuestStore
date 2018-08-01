@@ -12,98 +12,75 @@
 
     <body class="bg">
 
-			<header class="primary-header">
-                <a href="index.html" class="btn button-logout">Logout</a>
-				<h1>Exp: 			Coins:			</h1>
-			</header>
+        <header class="primary-header">
+            <a href="index.html" class="btn button-logout">Logout</a>
+            <h1>Exp: 			Coins:			</h1>
+        </header>
 
-			<section class="hero row">
-				<div class="navbar" id="myNavbar">
-					<div class="primary-nav-left">
-						<a href="main-mentor.html" class="btn">main</a>
-						<a href="profile-mentor.html" class="btn">profile</a>
-						<a href="contact-mentor.html" class="btn">contact</a>
-					</div>
-					<div class="primary-nav-right">
-						<a href="store-mentor.html" class="btn active">store</a>
-						<a href="quests-mentor.html" class="btn">quests</a>
-						<a href="mentor-coodcooler-list.html" class="btn">codecooler</a>
-						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-					</div>
-				</div>
-				<div>
-					<h2><br><br><br>Welcome traveler...</h2><br>
-				</div>
-
-			</section>
-
-			<section class="container title">
-					<h1>Add or edit a artifacts!<br></h1>
-					<button class="btn "  onclick="addArtefact();">Add-artefact</button>
-					<button class="btn">Save</button>
-				</section>
-
-
-
-    {% set cardCount = {{ artifactNumber }} %}
-    {% set containersCount = cardCount/3|round(0, 'ceil') %}
-
-    {% for i in 0..containersCount %}
-        <div class="flex-container perspective"  id="first-cards">
-
-        {% if cardCount >= 3 %}
-            {% for i in 0..3 % }
-
-                <div class="card-container">
-                    <div class="card-title">
-                        <p contenteditable="true">{{ artifact.name }}</p>
-                    </div>
-                    <div class="card-value">
-                        <p contenteditable="true">{{ artifact.price }}</p>
-                    </div>
-                    <img src="assets/stylesheets/{{ artifact.name }}.jpg">
-                    <div class="card-description">
-                        <p contenteditable="true">{{ artifact.description }}</p>
-                    </div>
+        <section class="hero row">
+            <div class="navbar" id="myNavbar">
+                <div class="primary-nav-left">
+                    <a href="main-mentor.html" class="btn">main</a>
+                    <a href="profile-mentor.html" class="btn">profile</a>
+                    <a href="contact-mentor.html" class="btn">contact</a>
                 </div>
-
-                {% set cardCount = cardCount-1 %}
-            {% endfor %}
-
-        {% else %}
-            {% for i in 0..cardCount % }
-                <div class="card-container">
-                    <div class="card-title">
-                        <p contenteditable="true">{{ artifact.name }}</p>
-                    </div>
-                    <div class="card-value">
-                        <p contenteditable="true">{{ artifact.price }}</p>
-                    </div>
-                    <img src="assets/stylesheets/{{ artifact.name }}.jpg">
-                    <div class="card-description">
-                        <p contenteditable="true">{{ artifact.description }}</p>
-                    </div>
+                <div class="primary-nav-right">
+                    <a href="store-mentor.html" class="btn active">store</a>
+                    <a href="quests-mentor.html" class="btn">quests</a>
+                    <a href="mentor-coodcooler-list.html" class="btn">codecooler</a>
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                 </div>
+            </div>
+            <div>
+                <h2><br><br><br>Welcome traveler...</h2><br>
+            </div>
 
-                {% set cardCount = cardCount-1 %}
-            {% endfor %}
+        </section>
+
+        <section class="container title">
+                <h1>Add or edit a artifacts!<br></h1>
+                <button class="btn "  onclick="addArtefact();">Add-artefact</button>
+                <button class="btn">Save</button>
+            </section>
+
+
+
+    {% for artifact in artifacts %}
+        {% if loop.index0 == 0 || loop.index0 is divisibleby(3) %}
+
+            <div class="flex-container perspective"  id="first-cards">
+
+                {% for i in loop.index0..loop.index0+2 % }
+                    <div class="card-container">
+                        <div class="card-title">
+                            <p contenteditable="true">{{ artifacts.get(i).name }}</p>
+                        </div>
+                        <div class="card-value">
+                            <p contenteditable="true">{{ artifacts.get(i).price }}</p>
+                        </div>
+                        <img src="assets/stylesheets/{{ artifacts.get(i).name }}.jpg">
+                        <div class="card-description">
+                            <p contenteditable="true">{{ artifacts.getI(i).description }}</p>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
         {% endif %}
-        </div>
     {% endfor %}
 
 
 
-
-			<footer class="primary-footer">
-					<small>&copy; Ekipa mocna</small>
-				<nav>
-						<a href="index.html">Home</a>
-						<a href="speakers.html">About</a>
-						<a href="schedule.html">PlaceHolder</a>
-						<a href="venue.html">PlaceHolder</a>
-						<a href="contact.html">PlaceHolder</a>
-					</nav>
-			</footer>
+    <footer class="primary-footer">
+            <small>&copy; Ekipa mocna</small>
+        <nav>
+                <a href="index.html">Home</a>
+                <a href="speakers.html">About</a>
+                <a href="schedule.html">PlaceHolder</a>
+                <a href="venue.html">PlaceHolder</a>
+                <a href="contact.html">PlaceHolder</a>
+            </nav>
+    </footer>
 
 		<script>
 			/* Toggle between adding and removing the "responsive" class to the navbar when the user clicks on the icon */

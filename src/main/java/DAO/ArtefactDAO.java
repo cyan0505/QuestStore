@@ -87,5 +87,5 @@ public class ArtefactDAO {
 
         return artifactList;
     }
-    
+
 }
