@@ -66,7 +66,7 @@ public class QuestDAO {
             boolean isExtra = rs.getBoolean("isextra");
 
             Quest quest = new Quest(questName, description, coins, isExtra);
-            
+
             questList.add(quest);
         }
         return questList;
