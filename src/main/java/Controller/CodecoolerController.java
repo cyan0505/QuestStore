@@ -31,14 +31,10 @@ public class CodecoolerController implements HttpHandler{
         URI uri = httpExchange.getRequestURI();
         String[] parsedUri = parseUri(uri.toString());
         System.out.println(uri);
-        if(method.equals("GET")) {
-            if(parsedUri[2].equals("codecooler")){
-                response = getCodecoolerMainPage(parsedUri[3]);
-            }
-            else if(parsedUri[4].equals("profile")){
-                response = getCodecoolerProfile(parsedUri[3]);
 
-            }
+        if(method.equals("GET")) {
+
+            response = chooseProperPage(parsedUri);
         }
 
         if(method.equals("POST")) {
@@ -52,6 +48,19 @@ public class CodecoolerController implements HttpHandler{
         os.close();
 
     }
+
+    private String chooseProperPage(String[] parsedUri){
+        String response="";
+        if(parsedUri.length == 3 && parsedUri[1].equals("codecooler")) {
+            response = getCodecoolerMainPage(parsedUri[2]);
+        }
+        else if(parsedUri.length == 4 && parsedUri[3].equals("profile")) {
+            response = getCodecoolerProfile(parsedUri[2]);
+        }
+
+        return response;
+    }
+
 
     private String getCodecoolerMainPage(String id){
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerMainPage.twig");
