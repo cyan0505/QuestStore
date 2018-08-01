@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Connection.DatabaseConnection;
 
@@ -22,7 +24,6 @@ public class RoomDAO {
 
     }
 
-
     public Room getRoom(int id) throws SQLException {
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -35,6 +36,29 @@ public class RoomDAO {
 
 
         return new Room(roomName);
+    }
+
+    public List<Room> getListOfRooms() throws SQLException{
+
+        List<Room> roomList = new ArrayList<>();
+
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM room;");
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()) {
+
+            String roomName = rs.getString("room_name");
+
+            Room room = new Room(roomName);
+
+            roomList.add(room);
+
+        }
+
+        return roomList;
     }
 
 
