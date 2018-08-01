@@ -9,22 +9,12 @@ import Model.Mentor;
 import java.sql.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MentorDAO {
 
     private Statement stmt;
-
-//
-//    public void addMentor() throws SQLException {
-//        Connection connection = DatabaseConnection.getInstance().getConnection();
-//
-//        PreparedStatement stmt = connection.prepareStatement("");
-//
-//        stmt.setString();
-//
-//
-//        stmt.executeUpdate();
-//    }
 
 
     public Mentor getMentor(int id) throws SQLException{
@@ -34,7 +24,7 @@ public class MentorDAO {
 
 
         PreparedStatement stmt = connection.prepareStatement("SELECT first_name, last_name, login, password, email" +
-                "FROM user_table WHERE role='codecooler'");
+                "FROM user_table WHERE role='mentor'");
 
         ResultSet rs = stmt.executeQuery();
 
@@ -53,6 +43,30 @@ public class MentorDAO {
 
     }
 
+    public List<Mentor> getMentorList() throws SQLException {
+        List<Mentor> mentorList = new ArrayList<>();
 
+        Connection connection = DatabaseConnection.getInstance().getConnection();
 
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM user_table WHERE role='mentor';");
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()){
+
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            String login = rs.getString("login");
+            String password = rs.getString("password");
+            String email = rs.getString("email");
+            String role = "mentor";
+
+            Mentor mentor = new Mentor(firstName, lastName, login, password, email, role);
+
+            mentorList.add(mentor);
+        }
+
+        return mentorList;
+    }
+    
 }
