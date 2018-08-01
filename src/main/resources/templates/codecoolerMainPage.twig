@@ -3,20 +3,20 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Quest Store</title>
-		<link rel="stylesheet" href="assets/stylesheets/main.css">
+		<link rel="stylesheet" href="../assets/stylesheets/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">	</head>
     <body class="bg">
 		<div>
 			<header class="primary-header">
 				<a href="http://localhost:8800/static/index.html" class="btn button-logout">Logout</a>
-				<h1>Exp: {{ student.getExp }}			Coins:	{{ student.getExp }}		</h1>
+				<h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getExp }}		</h1>
 			</header>
 
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="http://localhost:8800/static/index.html/{{ codecooler.getId }}" class="btn active">main</a>
-						<a href="http://localhost:8800/static/profile/{{ codecooler.getId }}" class="btn">profile</a>
+						<a href="http://localhost:8800/static/codecooler/{{ codecooler.getId }}" class="btn active">main</a>
+						<a href="http://localhost:8800/static/codecooler/{{ codecooler.getId }}/profile" class="btn">profile</a>
 						<a href="contact-codecooler.html" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">

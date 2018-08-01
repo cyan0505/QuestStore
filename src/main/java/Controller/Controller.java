@@ -36,7 +36,6 @@ public class Controller implements HttpHandler {
             if(parsedUri[1].equals("static")){
                showMainPage(uri, httpExchange);
             }
-
         }
 
         if(method.equals("POST")) {
