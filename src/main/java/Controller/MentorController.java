@@ -8,7 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import BuisnessLogic.Artifact;
+import BuisnessLogic.Quest;
+import DAO.ArtefactDAO;
 import DAO.CodecoolerDAO;
+import DAO.QuestDAO;
 import DAO.UserDAO;
 import Model.Codecooler;
 import com.sun.net.httpserver.Headers;
@@ -20,6 +24,8 @@ import org.jtwig.JtwigTemplate;
 public class MentorController implements HttpHandler {
 
     private UserDAO userDao = new UserDAO();
+    private ArtefactDAO artefactDao = new ArtefactDAO();
+    private QuestDAO questDao = new QuestDAO();
 
 
     @Override
@@ -46,25 +52,47 @@ public class MentorController implements HttpHandler {
 
                 }
 
-                if (uri[2].equals("add_codecooler")) {
+                if (uri[2].equals("store-mentor")) {
 
-                    JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/addStudent.twig");
+                    List<Artifact> artifactList = new ArrayList<>();
+
+                    JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/store-mentor.twig");
 
                     JtwigModel model = JtwigModel.newModel();
+
+                    try {
+                        artifactList = artefactDao.getListOfArtifact();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                    model.with("artifactList", artifactList);
 
                     response = template.render(model);
 
                 }
 
-                if (uri[2].equals("add_quest")) {
+                if(uri[2].equals("quest-mentor")) {
+                    List<Quest> questList = new ArrayList<>();
+
+                    JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/quest-mentor.twig");
+
+                    JtwigModel model = JtwigModel.newModel();
+
+                    try {
+                        questList = questDao.getListOfQuests();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                    model.with("questList", questList);
+
+                    response = template.render(model);
 
 
                 }
 
-                if (uri[2].equals("add_artifact")) {
 
-
-                }
 
                 if (uri[2].equals("edit_codecooler")) {
 

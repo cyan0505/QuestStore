@@ -46,6 +46,8 @@ public class CreepyController implements HttpHandler{
 
                 if(uri[2].equals("delete_mentor")) {
 
+                    int studentId = Integer.parseInt(uri[3]);
+
                     try {
                         userDao.deleteUser(studentId);
                     } catch (SQLException e) {
