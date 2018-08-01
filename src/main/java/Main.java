@@ -16,11 +16,11 @@ public class Main {
         while (option) {
             view.printMenu();
             Integer answer = view.getAnswerAsInt("Choose option: ");
-            try {
-                option = controller.handleMenu(answer);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                option = controller.handleMenu(answer);
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 }
