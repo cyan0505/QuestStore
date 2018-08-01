@@ -3,10 +3,13 @@ package DAO;
 import BuisnessLogic.Quest;
 import Connection.DatabaseConnection;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuestDAO {
 
@@ -44,6 +47,29 @@ public class QuestDAO {
 
         return quest;
 
+    }
+
+    public List<Quest> getListOfQuests() throws SQLException{
+        List<Quest> questList = new ArrayList<>();
+
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM quest;");
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()) {
+
+            String questName = rs.getString("quest_name");
+            String description = rs.getString("description");
+            int coins = rs.getInt("coins");
+            boolean isExtra = rs.getBoolean("isextra");
+
+            Quest quest = new Quest(questName, description, coins, isExtra);
+            
+            questList.add(quest);
+        }
+        return questList;
     }
 
 }
