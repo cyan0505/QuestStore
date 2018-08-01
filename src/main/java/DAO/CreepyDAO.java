@@ -17,9 +17,7 @@ public class CreepyDAO {
 
         PreparedStatement stmt = connection.prepareStatement("");
 
-        stmt.setString();
 
-        stmt.executeUpdate();
 
 
     }

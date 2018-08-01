@@ -6,12 +6,14 @@ public class Artifact {
     private String description;
     private Integer price;
     private Boolean isUsed;
+    private Boolean isGroup;
 
-    public Artifact(String name, String description, Integer price, Boolean isUsed) {
+    public Artifact(String name, String description, Integer price, Boolean isGroup) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.isUsed = isUsed;
+        this.isUsed = false;
+        this.isGroup = isGroup;
     }
 
     public String getName() {
@@ -28,6 +30,10 @@ public class Artifact {
 
     public Integer getPrice() {
         return price;
+    }
+
+    public Boolean isGroup() {
+        return isGroup;
     }
 
     public void setName(String name) {
