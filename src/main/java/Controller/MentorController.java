@@ -132,10 +132,6 @@ public class MentorController implements HttpHandler {
         os.write(response.getBytes());
         os.close();
 
-
-
-
-
     }
 
 }

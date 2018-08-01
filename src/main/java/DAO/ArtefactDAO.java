@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArtefactDAO {
 
@@ -45,5 +47,45 @@ public class ArtefactDAO {
         return artifact;
     }
 
+//    public int getNumberOfArtifact() throws SQLException{
+//
+//
+//        Connection connection = DatabaseConnection.getInstance().getConnection();
+//
+//        PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM artifact;");
+//
+//        ResultSet rs = stmt.executeQuery();
+//
+//        int artifactNumber = stmt;
+//
+//        return artifactNumber;
+//
+//    }
 
+    public List<Artifact> getListOfArtifact() throws SQLException{
+
+        List<Artifact> artifactList = new ArrayList<>();
+
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM artifact;");
+
+        ResultSet rs = stmt.executeQuery();
+
+        while(rs.next()) {
+
+            String artifactName = rs.getString("artefact_name");
+            String description = rs.getString("description");
+            int price = rs.getInt("price");
+            boolean isGroup = rs.getBoolean("isgroup");
+
+            Artifact artifact = new Artifact(artifactName, description, price, isGroup);
+
+            artifactList.add(artifact);
+
+        }
+
+        return artifactList;
+    }
+    
 }
