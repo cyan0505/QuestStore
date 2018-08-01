@@ -38,12 +38,15 @@ public class MentorController implements HttpHandler {
 
                     int studentId = Integer.parseInt(uri[3]);
 
-                    delete(studentId);
-
+                    try {
+                        userDao.deleteUser(studentId);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
                 }
 
-                if(uri[2].equals("add")) {
+                if(uri[2].equals("add_codecooler")) {
 
                     JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/addStudent.twig");
 
@@ -64,7 +67,7 @@ public class MentorController implements HttpHandler {
                 }
 
                 else {
-                    redirectToLocation(httpExchange, "/main-mentor");
+                    Controller.redirectToLocation(httpExchange, "/main-mentor");
                 }
 
             }
@@ -91,7 +94,6 @@ public class MentorController implements HttpHandler {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-
 
             }
 
@@ -132,24 +134,5 @@ public class MentorController implements HttpHandler {
 
         return map;
     }
-
-
-    private void redirectToLocation(HttpExchange exchange, String location) {
-
-        Headers responseHeaders = exchange.getResponseHeaders();
-        responseHeaders.add("Location", location);
-
-        try {
-            exchange.sendResponseHeaders(302, -1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        exchange.close();
-
-    }
-
-
-
-
 
 }

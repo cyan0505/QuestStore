@@ -1,72 +1,58 @@
 package Controller;
 
+import java.io.*;
+import java.net.URLDecoder;
 import java.sql.SQLException;
-import Model.*;
-import View.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class Controller {
+import DAO.CodecoolerDAO;
+import DAO.UserDAO;
+import Model.Codecooler;
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import org.jtwig.JtwigModel;
+import org.jtwig.JtwigTemplate;
 
-    private DataManager dataManager;
-    private View view;
 
-    public Controller(){
-        this.dataManager = new DataManager();
-        this.view = new View();
-    }
+public class Controller implements HttpHandler {
 
-    public Boolean handleMenu(Integer number) throws SQLException {
+    @Override
+    public void handle(HttpExchange httpExchange) throws IOException {
 
-        switch (number) {
-            case 1:
-                String table = view.getAnswerAsString("table: ");
-                dataManager.insertRow(table);
-                break;
-            case 2:
-                String table2 = view.getAnswerAsString("table: ");
-                String column = view.getAnswerAsString("column: ");
-                Integer id = view.getAnswerAsInt("id: ");
-                dataManager.deleteRowUseId(table2, column, id);
-                break;
-            case 3:
-                String table3 = view.getAnswerAsString("give table: ");
-                dataManager.printGivenTable(table3);
-                break;
-            case 4:
-//                handleShowNamePhoneNumUseEmail();
-                break;
-            case 5:
-//                handleInsertRowShowApplicatUseCode();
-                break;
-            case 6:
-//                handleUpdatePhoneNumberShowPhoneNumber();
-                break;
-            case 7:
-//                handleDeleteRowUseEmail();
-                break;
-            case 8:
-//                handleAdvanceSearch();
-                break;
-            case 0:
-                dataManager.closeConnection();
-                return false;
-            default:
-                break;
+        String method = httpExchange.getRequestMethod();
+        String response = "";
+
+        if(method.equals("GET")) {
+
         }
-        return true;
+
+        if(method.equals("POST")) {
+
+
+        }
+
+        httpExchange.sendResponseHeaders(200, response.length());
+        OutputStream os = httpExchange.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+
     }
 
-    public boolean checkLogin(String login){
-//        method from dao
-        return false;
+
+    public static void redirectToLocation(HttpExchange exchange, String location) {
+        Headers responseHeaders = exchange.getResponseHeaders();
+        responseHeaders.add("Location", location);
+
+        try {
+            exchange.sendResponseHeaders(302, -1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        exchange.close();
     }
-
-    public boolean checkPassword(String password){
-        return false;
-    }
-
-
-
-
-
 
 }
