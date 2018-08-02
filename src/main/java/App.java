@@ -9,6 +9,8 @@ public class App {
         HttpServer server = HttpServer.create(new InetSocketAddress(8800), 0);
         server.createContext("/static", new Controller());
         server.createContext("/codecooler", new CodecoolerController());
+        server.createContext("/mentor", new MentorController());
+
 
         server.setExecutor(null);
         server.start();

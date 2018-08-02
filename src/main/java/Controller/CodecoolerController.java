@@ -3,17 +3,9 @@ package Controller;
 
 import java.io.*;
 import java.net.URI;
-import java.net.URLDecoder;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import DAO.CodecoolerDAO;
-import DAO.UserDAO;
 import Model.Codecooler;
-import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -63,6 +55,12 @@ public class CodecoolerController implements HttpHandler{
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("contact")){
                 response = getCodecoolerContact(parsedUri[idIndex]);
             }
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("store")){
+                response = getCodecoolerStore(parsedUri[idIndex]);
+            }
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("inventory")){
+                response = getCodecoolerInventory(parsedUri[idIndex]);
+            }
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -75,9 +73,8 @@ public class CodecoolerController implements HttpHandler{
         JtwigModel model = JtwigModel.newModel();
 
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        //Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
-
-        //model.with("codecooler", codecooler);
+        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        model.with("codecooler", codecooler);
 
         return template.render(model);
     }
@@ -87,8 +84,8 @@ public class CodecoolerController implements HttpHandler{
         JtwigModel model = JtwigModel.newModel();
 
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        //Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
-        //model.with("codecooler", codecooler);
+        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        model.with("codecooler", codecooler);
 
         return template.render(model);
     }
@@ -98,8 +95,30 @@ public class CodecoolerController implements HttpHandler{
         JtwigModel model = JtwigModel.newModel();
 
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        //Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
-        //model.with("codecooler", codecooler);
+        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        model.with("codecooler", codecooler);
+
+        return template.render(model);
+    }
+
+    private String getCodecoolerStore(String id) throws SQLException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerStore.twig");
+        JtwigModel model = JtwigModel.newModel();
+
+        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
+        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        model.with("codecooler", codecooler);
+
+        return template.render(model);
+    }
+
+    private String getCodecoolerInventory(String id) throws SQLException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerInventory.twig");
+        JtwigModel model = JtwigModel.newModel();
+
+        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
+        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        model.with("codecooler", codecooler);
 
         return template.render(model);
     }
