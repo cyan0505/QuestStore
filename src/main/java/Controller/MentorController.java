@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import DAO.*;
+import Model.Codecooler;
 import Model.Mentor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -19,6 +20,8 @@ public class MentorController implements HttpHandler {
     private UserDAO userDao = new UserDAO();
     private ArtefactDAO artefactDao = new ArtefactDAO();
     private QuestDAO questDao = new QuestDAO();
+    private MentorDAO mentorDao = new MentorDAO();
+    private CodecoolerDAO codecoolerDao = new CodecoolerDAO();
 
 
     @Override
@@ -69,6 +72,9 @@ public class MentorController implements HttpHandler {
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("inventory")){
                 response = getMentorRoom(parsedUri[idIndex]);
+            }
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("codecooler")){
+                response = getMentorCodecoolerList(parsedUri[idIndex]);
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -140,6 +146,22 @@ public class MentorController implements HttpHandler {
         model.with("mentor", mentor);
 
         return template.render(model);
+    }
+
+    private String getMentorCodecoolerList(String id) throws SQLException {
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentorCodecoolers.twig");
+        JtwigModel model = JtwigModel.newModel();
+
+
+        Mentor mentor = mentorDao.getMentor(String.valueOf(id));
+        List<Codecooler> codecoolerList = codecoolerDao.getListOfCodecoolers();
+
+        model.with("mentor", mentor);
+        model.with("studentList", codecoolerList);
+
+        return template.render(model);
+
+
     }
 
 }
