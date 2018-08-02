@@ -3,6 +3,11 @@ package Controller;
 import java.io.*;
 import java.net.URI;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import BuisnessLogic.Artifact;
 import DAO.*;
 import Model.Codecooler;
 import Model.Mentor;
@@ -61,7 +66,8 @@ public class MentorController implements HttpHandler {
                 response = getMentorContact(parsedUri[idIndex]);
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("store")){
-                response = getMentorStore(parsedUri[idIndex]);
+                System.out.println("WESzlo");
+                response = getMentorStore();
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("inventory")){
                 response = getMentorRoom(parsedUri[idIndex]);
@@ -69,6 +75,7 @@ public class MentorController implements HttpHandler {
         } catch (SQLException e){
             e.printStackTrace();
         }
+        System.out.println(response);
         return response;
     }
 
@@ -106,13 +113,24 @@ public class MentorController implements HttpHandler {
         return template.render(model);
     }
 
-    private String getMentorStore(String id) throws SQLException{
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/MentorStore.twig");
+    private String getMentorStore() throws SQLException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/storeMentor.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        MentorDAO mentorDAO = new MentorDAO();
-        Mentor mentor = mentorDAO.getMentor(String.valueOf(id));
-        model.with("mentor", mentor);
+
+        List<Artifact> artifactList = artefactDao.getListOfArtifact();
+        ArrayList<Integer> numberList = new ArrayList<>();
+        numberList.add(1);
+        numberList.add(2);
+        numberList.add(3);
+
+
+//        model.with("artifacts", artifactList);
+//        model.with("numbers", numberList);
+
+
+        List<List> listOfLists = artefactDao.getNestedArtifactList(artefactDao.getListOfArtifact());
+        model.with("artifacts", listOfLists);
 
         return template.render(model);
     }

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Quest Store</title>
-		<link rel="stylesheet" href="assets/stylesheets/main.css">
+		<link rel="stylesheet" href="/static/assets/stylesheets/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">	</head>
 
         <script src="scripts.js" type="text/javascript">
@@ -41,32 +41,34 @@
                 <h1>Add or edit a artifacts!<br></h1>
                 <button class="btn "  onclick="addArtefact();">Add-artefact</button>
                 <button class="btn">Save</button>
-            </section>
-
+        </section>
 
 
     {% for artifact in artifacts %}
-        {% if loop.index0 == 0 || loop.index0 is divisibleby(3) %}
 
-            <div class="flex-container perspective"  id="first-cards">
 
-                {% for i in loop.index0..loop.index0+2 % }
-                    <div class="card-container">
-                        <div class="card-title">
-                            <p contenteditable="true">{{ artifacts.get(i).name }}</p>
-                        </div>
-                        <div class="card-value">
-                            <p contenteditable="true">{{ artifacts.get(i).price }}</p>
-                        </div>
-                        <img src="assets/stylesheets/{{ artifacts.get(i).name }}.jpg">
-                        <div class="card-description">
-                            <p contenteditable="true">{{ artifacts.getI(i).description }}</p>
-                        </div>
+        <div class="flex-container perspective"  id="first-cards">
+
+            {% for card in artifact %}
+
+                <div class="card-container">
+                    <div class="card-title">
+                        <p contenteditable="true">{{ card.name }}</p>
                     </div>
+                    <div class="card-value">
+                        <p contenteditable="true">{{ card.price }}</p>
+                    </div>
+                    <img src="/static/assets/stylesheets/Card_artefact.jpg">
+                    <div class="card-description">
+                        <p contenteditable="true">{{ card.description }}</p>
+                    </div>
+                </div>
 
-                {% endfor %}
-            </div>
-        {% endif %}
+            {% set cardIndex = cardindex + 1 %}    
+            {% endfor %}
+            
+        </div>
+
     {% endfor %}
 
 
