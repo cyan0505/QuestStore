@@ -1,14 +1,12 @@
 package Controller;
 
 import java.io.*;
+import java.net.HttpCookie;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import DAO.CodecoolerDAO;
 import DAO.UserDAO;
@@ -22,6 +20,7 @@ import org.jtwig.JtwigTemplate;
 
 
 public class Controller implements HttpHandler {
+    public static List<String> sessionIdList = new ArrayList<>();
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -30,17 +29,31 @@ public class Controller implements HttpHandler {
         String response = "";
         URI uri = httpExchange.getRequestURI();
         String[] parsedUri = parseUri(uri.toString());
+        HttpCookie cookie = null;
 
-        if(method.equals("GET")) {
+        if(method.equals("GET") && parsedUri[1].equals("static")) {
 
-            if(parsedUri[1].equals("static")){
-               showMainPage(uri, httpExchange);
-            }
+            createCookieIfNotExist(httpExchange);
+            showMainPage(uri, httpExchange);
         }
-
         if(method.equals("POST")) {
 
+            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
+            BufferedReader br = new BufferedReader(isr);
+            String formData = br.readLine();
 
+            System.out.println(formData);
+            Map inputs = parseUserInfoFromData(formData);
+            String password = (String) inputs.get("password");
+            //String passwordFromDB = guestBookDAO.getUsers().get((String) inputs.get("login"));
+//            System.out.println(password + " " + passwordFromDB + " " + (password.equals(passwordFromDB)));
+
+//            if (password.equals(passwordFromDB)) {
+//                sessionIdList.add(httpExchange.getRequestHeaders().getFirst("Cookie"));
+//                redirectToLocation(httpExchange, "/logged");
+//            } else {
+//                redirectToLocation(httpExchange, "/login");
+//            }
         }
 
         httpExchange.sendResponseHeaders(200, response.length());
@@ -48,6 +61,19 @@ public class Controller implements HttpHandler {
         os.write(response.getBytes());
         os.close();
 
+    }
+
+    private void createCookieIfNotExist(HttpExchange httpExchange){
+        String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
+        if (cookieStr == null) {
+            createCookie(httpExchange);
+        }
+    }
+
+    private void createCookie(HttpExchange httpExchange) {
+        UUID uuid = UUID.randomUUID();
+        HttpCookie cookie = new HttpCookie("sessionId", String.valueOf(uuid));
+        httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
     }
 
     private void showMainPage(URI uri, HttpExchange httpExchange) throws IOException{
