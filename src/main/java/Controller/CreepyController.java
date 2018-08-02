@@ -30,7 +30,7 @@ public class CreepyController implements HttpHandler{
 
         if(method.equals("GET")) {
 
-            String[] uri = Controller.parseFromData(httpExchange.getRequestURI().toString());
+            String[] uri = Controller.parseUri(httpExchange.getRequestURI().toString());
 
             if(uri.length >= 3) {
 
@@ -43,6 +43,7 @@ public class CreepyController implements HttpHandler{
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
+
                 }
 
                 else {
@@ -85,12 +86,7 @@ public class CreepyController implements HttpHandler{
 
     }
 
-
-
-
-
-
-
+    
 
 
 }
