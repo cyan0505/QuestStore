@@ -874,38 +874,3 @@ input[type=submit]:hover {
   progress bar
   ========================================
 */
-.img__wrap {
-  position: relative;
-  height: 26px;
-  width: 180px;
-}
-
-#progressbar {
-  background-color: black;
-  border-radius: 13px; /* (height of inner div) / 2 + padding */
-  padding: 0px;
-}
-
-#progressbar > div {
-   background-color: orange;
-   width: 40%; /* Adjust with JavaScript */
-   height: 26px;
-   border-radius: 10px;
-}
-
-.img__description {
-  position: absolute;
-  top: -70%;
-  left: 40%;
-  background: none;
-  color: #fff;
-  visibility: hidden;
-  opacity: 0;
-  background-size: cover;
-  transition: opacity .2s, visibility .2s;
-}
-
-#progressbar:hover .img__description {
-  visibility: visible;
-  opacity: 1;
-}

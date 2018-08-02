@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="questStore" />
+        <module name="QuestStore" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="questStore" target="8" />
+      <module name="QuestStore" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

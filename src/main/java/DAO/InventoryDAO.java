@@ -35,7 +35,7 @@ public class InventoryDAO {
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM codecooler_artefact WHERE id_codecooler='" +
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM codecooler_artefact WHERE id_codecooler=" +
                 codecoolerId + ";");
 
         ResultSet rs = stmt.executeQuery();
