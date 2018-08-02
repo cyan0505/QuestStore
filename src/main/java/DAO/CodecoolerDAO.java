@@ -41,7 +41,7 @@ public class CodecoolerDAO {
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        PreparedStatement stmt = connection.prepareStatement("SELECT first_name, last_name, login, password, email" +
+        PreparedStatement stmt = connection.prepareStatement("SELECT * " +
                 "FROM user_table WHERE role='codecooler'");
 
         ResultSet rs = stmt.executeQuery();
