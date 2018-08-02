@@ -11,8 +11,8 @@ public class CreepyGuy extends User{
     private List<Room> roomList;
     private List<Mentor> mentorList;
 
-    public CreepyGuy(String firstName, String lastName, String login, String password, String email, String role){
-        super(firstName, lastName, login, password, email, role);
+    public CreepyGuy(String firstName, String lastName, String login, String password, String email, String role, int userId){
+        super(firstName, lastName, login, password, email, role, userId);
         this.roomList = new ArrayList<Room>();
         this.mentorList = new ArrayList<Mentor>();
     }

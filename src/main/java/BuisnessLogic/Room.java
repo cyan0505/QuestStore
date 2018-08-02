@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Room {
 
+    private Integer roomId;
     private String name;
     private List<Mentor> mentorsList;
     private List<Codecooler> codecoolerList;
@@ -28,6 +29,10 @@ public class Room {
 
     public List<Mentor> getMentorsList() {
         return mentorsList;
+    }
+
+    public Integer getRoomId() {
+        return roomId;
     }
 
     public void setName(String name) {

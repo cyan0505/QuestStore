@@ -37,9 +37,10 @@ public class ArtefactDAO {
         String description = rs.getString("description");
         int price = rs.getInt("price");
         boolean isGroup = rs.getBoolean("isgroup");
+        int artifactId = rs.getInt("id_artefact");
 
 
-        Artifact artifact = new Artifact(artifactName, description, price, isGroup);
+        Artifact artifact = new Artifact(artifactName, description, price, isGroup, artifactId);
 
         return artifact;
     }
@@ -61,8 +62,9 @@ public class ArtefactDAO {
             String description = rs.getString("description");
             int price = rs.getInt("price");
             boolean isGroup = rs.getBoolean("isgroup");
+            int artifactId = rs.getInt("id_artefact");
 
-            Artifact artifact = new Artifact(artifactName, description, price, isGroup);
+            Artifact artifact = new Artifact(artifactName, description, price, isGroup, artifactId);
 
             artifactList.add(artifact);
 

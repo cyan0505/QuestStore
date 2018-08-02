@@ -11,9 +11,9 @@ public class Codecooler extends User {
     private Integer exp;
     private Wallet inventory;
 
-    public Codecooler(String firstName, String lastName, String login, String password, String email, String role){
-        super(firstName, lastName, login, password, email, role);
-        this.exp = null;
+    public Codecooler(String firstName, String lastName, String login, String password, String email, String role, int userId){
+        super(firstName, lastName, login, password, email, role, userId);
+        this.exp = 0;
         this.roomName = null;
         this.inventory = null;
     }
