@@ -2,6 +2,7 @@ package Model;
 
 public abstract class User {
 
+    private int userId;
     private String firstName;
     private String lastName;
     private String login;
@@ -9,13 +10,14 @@ public abstract class User {
     private String email;
     private String role;
 
-    public User(String firstName, String lastName, String login, String password, String email, String role){
+    public User(String firstName, String lastName, String login, String password, String email, String role, int userId){
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -40,6 +42,10 @@ public abstract class User {
 
     public String getRole() {
         return role;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public void setLastName(String lastName) {

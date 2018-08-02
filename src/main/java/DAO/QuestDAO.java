@@ -41,9 +41,10 @@ public class QuestDAO {
         String description = rs.getString("description");
         int coins = rs.getInt("coins");
         boolean isExtra = rs.getBoolean("isextra");
+        int questId = rs.getInt("id_quest");
 
 
-        Quest quest = new Quest(questName, description, coins, isExtra);
+        Quest quest = new Quest(questName, description, coins, isExtra, questId);
 
         return quest;
 
@@ -64,8 +65,9 @@ public class QuestDAO {
             String description = rs.getString("description");
             int coins = rs.getInt("coins");
             boolean isExtra = rs.getBoolean("isextra");
+            int questId = rs.getInt("id_quest");
 
-            Quest quest = new Quest(questName, description, coins, isExtra);
+            Quest quest = new Quest(questName, description, coins, isExtra, questId);
 
             questList.add(quest);
         }
