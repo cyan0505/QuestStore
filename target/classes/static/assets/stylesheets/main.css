@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -538,6 +538,7 @@ th, td {
   font-size: 30px;
 }
 
+
 .avatar-img {
   width: 80%;
   height: 70%;
@@ -599,10 +600,10 @@ button {
   
   display: inline-block;
   background-color:white;
+  width: 40px;
   border: none;
   margin: 0;
   padding: 0;
-  width: 180%;
 }
 
 .button-add{
@@ -612,7 +613,7 @@ button {
   border: none;
   margin: 0;
   padding: 0;
-  width: 180%;
+  width: 40px;
 }
 
 /* Add a hover effect for buttons */

@@ -33,7 +33,6 @@ public class CodecoolerController implements HttpHandler{
         System.out.println(uri);
 
         if(method.equals("GET")) {
-
             response = chooseProperPage(parsedUri);
         }
 
@@ -49,35 +48,57 @@ public class CodecoolerController implements HttpHandler{
 
     }
 
-
     private String chooseProperPage(String[] parsedUri){
         String response="";
-        if(parsedUri.length == 3 && parsedUri[1].equals("codecooler")) {
-            response = getCodecoolerMainPage(parsedUri[2]);
+        int mainPageIndex = 1;
+        int idIndex = 2;
+        int subPageIndex = 3;
+        try {
+            if (parsedUri.length == 3 && parsedUri[mainPageIndex].equals("codecooler")) {
+                response = getCodecoolerMainPage(parsedUri[idIndex]);
+            }
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("profile")) {
+                response = getCodecoolerProfile(parsedUri[idIndex]);
+            }
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("contact")){
+                response = getCodecoolerContact(parsedUri[idIndex]);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
         }
-        else if(parsedUri.length == 4 && parsedUri[3].equals("profile")) {
-            response = getCodecoolerProfile(parsedUri[2]);
-        }
-
         return response;
     }
 
 
-    private String getCodecoolerMainPage(String id){
+    private String getCodecoolerMainPage(String id) throws SQLException{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerMainPage.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        //paste proper codecooler with index id
+        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
+        //Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+
         //model.with("codecooler", codecooler);
 
         return template.render(model);
     }
 
-    private String getCodecoolerProfile(String id){
+    private String getCodecoolerProfile(String id) throws SQLException{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerProfile.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        //paste proper codecooler with index id
+        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
+        //Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        //model.with("codecooler", codecooler);
+
+        return template.render(model);
+    }
+
+    private String getCodecoolerContact(String id) throws SQLException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerContact.twig");
+        JtwigModel model = JtwigModel.newModel();
+
+        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
+        //Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
         //model.with("codecooler", codecooler);
 
         return template.render(model);
