@@ -26,7 +26,6 @@ public class ArtefactDAO {
     }
 
 
-
     public Artifact getArtifact(int id) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
@@ -46,7 +45,7 @@ public class ArtefactDAO {
     }
 
 
-    public List<Artifact> getListOfArtifact() throws SQLException{
+    public List<Artifact> getListOfArtifact() throws SQLException {
 
         List<Artifact> artifactList = new ArrayList<>();
 
@@ -56,7 +55,7 @@ public class ArtefactDAO {
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM artefact;");
 
-        while(rs.next()) {
+        while (rs.next()) {
 
             String artifactName = rs.getString("artefact_name");
             String description = rs.getString("description");
@@ -73,24 +72,24 @@ public class ArtefactDAO {
     }
 
 
-    public List<List> getNestedArtifactList(List<Artifact> artifactList) throws SQLException{
-          List<List> listOfLists = new ArrayList<>();
+    public List<List> getNestedArtifactList(List<Artifact> artifactList) throws SQLException {
+        List<List> listOfLists = new ArrayList<>();
 
-          int size = 3;
+        int size = 3;
 
-          for(int i = 0; i < artifactList.size(); i += size) {
-              int end = Math.min(i + size, artifactList.size());
-              List<Artifact> sublist = artifactList.subList(i, end);
-              listOfLists.add(sublist);
-          }
+        for (int i = 0; i < artifactList.size(); i += size) {
+            int end = Math.min(i + size, artifactList.size());
+            List<Artifact> sublist = artifactList.subList(i, end);
+            listOfLists.add(sublist);
+        }
 
-          for(List list : listOfLists) {
-              for(int i = 0; i < list.size(); i++) {
-                  System.out.println(list.indexOf(i));
-              }
-          }
+        for (List list : listOfLists) {
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(list.indexOf(i));
+            }
+        }
 
-          return listOfLists;
+        return listOfLists;
     }
 
 }
