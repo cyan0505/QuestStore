@@ -3,15 +3,13 @@ package DAO;
 import BuisnessLogic.Artifact;
 import Connection.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArtefactDAO {
 
+    private Statement stmt;
 
     public void addArtifact(Artifact artifact) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -47,20 +45,6 @@ public class ArtefactDAO {
         return artifact;
     }
 
-//    public int getNumberOfArtifact() throws SQLException{
-//
-//
-//        Connection connection = DatabaseConnection.getInstance().getConnection();
-//
-//        PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM artifact;");
-//
-//        ResultSet rs = stmt.executeQuery();
-//
-//        int artifactNumber = stmt;
-//
-//        return artifactNumber;
-//
-//    }
 
     public List<Artifact> getListOfArtifact() throws SQLException{
 
@@ -68,9 +52,9 @@ public class ArtefactDAO {
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM artifact;");
+        stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM artefact;");
 
         while(rs.next()) {
 
@@ -84,8 +68,29 @@ public class ArtefactDAO {
             artifactList.add(artifact);
 
         }
-
+        System.out.println(artifactList.size());
         return artifactList;
+    }
+
+
+    public List<List> getNestedArtifactList(List<Artifact> artifactList) throws SQLException{
+          List<List> listOfLists = new ArrayList<>();
+
+          int size = 3;
+
+          for(int i = 0; i < artifactList.size(); i += size) {
+              int end = Math.min(i + size, artifactList.size());
+              List<Artifact> sublist = artifactList.subList(i, end);
+              listOfLists.add(sublist);
+          }
+
+          for(List list : listOfLists) {
+              for(int i = 0; i < list.size(); i++) {
+                  System.out.println(list.indexOf(i));
+              }
+          }
+
+          return listOfLists;
     }
 
 }
