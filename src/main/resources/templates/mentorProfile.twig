@@ -3,26 +3,26 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Quest Store</title>
-		<link rel="stylesheet" href="assets/stylesheets/main.css">
-		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">	</head>
+		<link rel="stylesheet" href="/static/assets/stylesheets/main.css">
+		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
+	</head>
     <body class="bg">
 		<div>
 			<header class="primary-header">
 				<a href="index.html" class="btn button-logout">Logout</a>
-				<h1>Exp: 			Coins:			</h1>
 			</header>
 
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="main-mentor.html" class="btn active">main</a>
-						<a href="profile-mentor.html" class="btn">profile</a>
+						<a href="http://localhost:8800/static/mentor/{{ mentor.getId }}" class="btn">main</a>
+						<a href="http://localhost:8800/static/mentor/{{ mentor.getId }}/profile" class="btn active">profile</a>
 						<a href="contact-mentor.html" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">
 						<a href="store-mentor.html" class="btn">store</a>
 						<a href="quests-mentor.html" class="btn">quests</a>
-						<a href="mentor-coodcooler-list.html" class="btn">codecooler</a>
+						<a href="wallet-mentor.html" class="btn">inventory</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -32,13 +32,50 @@
 
 			</section>
 
-			<div><h1 class="title">Cos tu bedzie!!!!!!!!</h1></div>
+			<div class="profile">
+				<h3>MENTOR PROFILE</h3>
+				<div></div>
+			</div>
 
-			<!-- <section class="grid">
-				<div class="container"><img src="assets/stylesheets/placeHolder.png" alt="przejebany dps"></div>
-				<div class="container"><img src="assets/stylesheets/placeHolder.png" alt="przejebany dps"></div>
-				<div class="container"><img src="assets/stylesheets/placeHolder.png" alt="przejebany dps"></div>
-			</section> -->
+			<div class="flex-container">
+
+				<div class="avatar">
+					<img src="/static/assets/stylesheets/avatar.jpg" class="avatar-img">
+					<h3><br>{{ mentor.getLogin }}</h3>
+				</div>
+				<div class="info">
+					<table style="width:100%">
+						<tr>
+							<th>First Name:</th>
+							<td>{{ mentor.getFirstName }}</td>
+						</tr>
+						<tr>
+							<th>Last Name:</th>
+							<td>{{ mentor.getLastName }}</td>
+						</tr>
+						<tr>
+							<th>email:</th>
+							<td contenteditable="true">{{ mentor.getEmail }}</td>
+						</tr>
+						<tr>
+							<th>password:</th>
+							<td>{{ mentor.getPassword }}</td>
+						</tr>
+						<tr>
+							<th>Level:</th>
+							<td><h1>1</h1></td>
+						</tr>
+						<tr>
+							<th>Progress:</th>
+							<td><div id="progressbar" class="img__wrap"><p class="img__description ">30%</p>
+									<div></div>
+								  </div></td>
+						</tr>
+					</table>
+				</div>
+
+
+			</div>
 
 			<footer class="primary-footer">
 					<small>&copy; Ekipa mocna</small>

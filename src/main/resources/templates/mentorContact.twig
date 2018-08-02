@@ -3,30 +3,29 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Quest Store - Contact</title>
-		<link rel="stylesheet" href="assets/stylesheets/main.css">
+		<link rel="stylesheet" href="/static/assets/stylesheets/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
-    
-        <script src="scripts.js" type="text/javascript"></script>
-        
+
+        <script src="static/js/html/scripts.js" type="text/javascript"></script>
+
     </head>
     <body class="bg">
 		<div>
 			<header class="primary-header">
-				<a href="index.html" class="btn button-logout">Logout</a>
-				<h1>Exp: 			Coins:			</h1>
+			    <a href="http://localhost:8800/static/index.html" class="btn button-logout">Logout</a>
 			</header>
 
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="main-mentor.html" class="btn">main</a>
-						<a href="profile-mentor.html" class="btn">profile</a>
-						<a href="contact-mentor.html" class="btn active">contact</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}" class="btn active">main</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile" class="btn">profile</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">
 						<a href="store-mentor.html" class="btn">store</a>
 						<a href="quests-mentor.html" class="btn">quests</a>
-						<a href="class-mentor.html" class="btn">class</a>
+						<a href="class-mentor.html" class="btn">inventory</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -39,34 +38,34 @@
 			<div><h1 class="title">If you have some questions - tell us!</h1></div>
 
             <div class="contact-message">
-            
+
                 <form name="myForm" onSubmit="return formValidation();">
-                
+
                     <label for="fname">Name</label><div id="nameError"></div>
                     <input type="text" id="fname" name="firstname" placeholder="Enter your name...">
-                    
+
                     <label for="email">Email</label><div id="emailError"></div>
                     <input type="text" id="email" name="email" placeholder="Enter your email...">
-                
+
                     <label for="message">Message</label><div id="messageError"></div>
                     <textarea id="message" name="message" placeholder="Write your message here..." style="height: 10rem"></textarea>
-                    
+
                     <input type="submit" name="submit" value="Submit">
-                                
+
                 </form>
-            
-            
+
+
             </div>
-            
+
 
 			<footer class="primary-footer">
 					<small>&copy; Ekipa mocna</small>
 				<nav>
-						<a href="index.html">Home</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}">Home</a>
 						<a href="speakers.html">About</a>
 						<a href="schedule.html">PlaceHolder</a>
 						<a href="venue.html">PlaceHolder</a>
-						<a href="contact.html">PlaceHolder</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact">PlaceHolder</a>
 					</nav>
 			</footer>
 		</div>
@@ -81,7 +80,7 @@
 				}
 			}
 
-		
+
 		</script>
  	</body>
 </html>
