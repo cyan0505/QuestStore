@@ -34,16 +34,6 @@ public class CreepyController implements HttpHandler{
 
             if(uri.length >= 3) {
 
-                if(uri[2].equals("add_mentor")) {
-
-
-
-                }
-
-                if(uri[2].equals("add_room")) {
-
-                }
-
                 if(uri[2].equals("delete_mentor")) {
 
                     int studentId = Integer.parseInt(uri[3]);
@@ -55,6 +45,8 @@ public class CreepyController implements HttpHandler{
                     }
 
                 }
+
+
 
 
                 else {
