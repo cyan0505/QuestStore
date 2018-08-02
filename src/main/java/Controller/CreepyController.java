@@ -43,11 +43,7 @@ public class CreepyController implements HttpHandler{
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-
                 }
-
-
-
 
                 else {
                     Controller.redirectToLocation(httpExchange, "main-admin");

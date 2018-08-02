@@ -33,9 +33,7 @@ public class CodecoolerDAO {
         String role = "codecooler";
 
 
-        Codecooler codecooler = new Codecooler(firstName, lastName, login, password, email, role);
-
-        return codecooler;
+        return new Codecooler(firstName, lastName, login, password, email, role);
     }
 
     public List<Codecooler> getListOfCodecoolers() throws SQLException{

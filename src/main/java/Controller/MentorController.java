@@ -49,7 +49,6 @@ public class MentorController implements HttpHandler {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-
                 }
 
                 if (uri[2].equals("store-mentor")) {
