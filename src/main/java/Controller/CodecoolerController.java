@@ -67,7 +67,7 @@ public class CodecoolerController implements HttpHandler{
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("store")){
                 response = getCodecoolerStore(parsedUri[idIndex]);
             }
-            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("quest")){
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("quests")){
                 response = getCodecoolerQuest(parsedUri[idIndex]);
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("inventory")){
@@ -141,7 +141,7 @@ public class CodecoolerController implements HttpHandler{
     }
 
     private String getCodecoolerInventory(String id) throws SQLException{
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerInventory.twig");
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerWallet.twig");
         JtwigModel model = JtwigModel.newModel();
 
         Codecooler codecooler = codecoolerDao.getCodecooler(id);

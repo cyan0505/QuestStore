@@ -3,13 +3,9 @@ package Controller;
 import java.io.*;
 import java.net.URI;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import BuisnessLogic.Artifact;
 import DAO.*;
-import Model.Codecooler;
 import Model.Mentor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -116,7 +112,7 @@ public class MentorController implements HttpHandler {
     }
 
     private String getMentorStore() throws SQLException{
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/storeMentor.twig");
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentorStore.twig");
         JtwigModel model = JtwigModel.newModel();
 
         List<List> listOfLists = artefactDao.getNestedArtifactList(artefactDao.getListOfArtifact());
@@ -126,7 +122,7 @@ public class MentorController implements HttpHandler {
     }
 
     private String getMentorQuest() throws SQLException {
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/quest-mentor.twig");
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentorQuest.twig");
         JtwigModel model = JtwigModel.newModel();
 
         List<List> listOfLists = questDao.getNestedQuestList(questDao.getListOfQuests());
@@ -136,7 +132,7 @@ public class MentorController implements HttpHandler {
     }
 
     private String getMentorRoom(String id) throws SQLException{
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/MentorRoom.twig");
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentorRoom.twig");
         JtwigModel model = JtwigModel.newModel();
 
         MentorDAO mentorDAO = new MentorDAO();
