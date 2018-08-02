@@ -1,5 +1,6 @@
 package DAO;
 
+import BuisnessLogic.Artifact;
 import Model.Codecooler;
 import Connection.DatabaseConnection;
 import Model.Mentor;
@@ -22,30 +23,31 @@ public class CodecoolerDAO {
                 "FROM user_table WHERE login='" + loginFromForm + "';");
 
         ResultSet rs = stmt.executeQuery();
-        Integer id_user = null;
         Codecooler codecooler = null;
 
         while (rs.next()) {
-            id_user = rs.getInt("id_user");
+            Integer id_user = rs.getInt("id_user");
             String firstName = rs.getString("first_name");
             String lastName = rs.getString("last_name");
             String login = rs.getString("login");
             String password = rs.getString("password");
             String email = rs.getString("email");
             String role = "codecooler";
-            codecooler = new Codecooler(firstName, lastName, login, password, email, role);
+            codecooler = new Codecooler(firstName, lastName, login, password, email, role, id_user);
         }
 
         stmt = connection.prepareStatement("SELECT * " +
-                "FROM codecooler WHERE id_user ='" + id_user + "';");
+                "FROM codecooler WHERE id_user ='" + codecooler.getUserId() + "';");
 
+        List<Integer> list = InventoryDAO.getArtifactsOfCodecooler(codecooler.getUserId());
+        ArrayList<Artifact> artifactList = InventoryDAO.getListOfArtifact(list);
         rs = stmt.executeQuery();
 
         while (rs.next()) {
             Integer coins = rs.getInt("coins");
             Integer exp = rs.getInt("experience");
             codecooler.setExp(exp);
-            codecooler.setInventory(list, coins);
+            codecooler.setInventory(artifactList, coins);
         }
         return codecooler;
     }
@@ -62,6 +64,7 @@ public class CodecoolerDAO {
 
         while(rs.next()) {
 
+            Integer user_id = rs.getInt("id_user");
             String firstName = rs.getString("first_name");
             String lastName = rs.getString("last_name");
             String login = rs.getString("login");
@@ -70,7 +73,7 @@ public class CodecoolerDAO {
             String role = "codecooler";
 
 
-            Codecooler codecooler = new Codecooler(firstName, lastName, login, password, email, role);
+            Codecooler codecooler = new Codecooler(firstName, lastName, login, password, email, role, user_id);
 
             codecoolerList.add(codecooler);
         }

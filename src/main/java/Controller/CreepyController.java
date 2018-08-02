@@ -1,22 +1,14 @@
 package Controller;
 
 import java.io.*;
-import java.net.URLDecoder;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import DAO.CodecoolerDAO;
 import DAO.UserDAO;
-import Model.Codecooler;
 import Model.Mentor;
-import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.jtwig.JtwigModel;
-import org.jtwig.JtwigTemplate;
+
 
 public class CreepyController implements HttpHandler{
 
@@ -61,7 +53,7 @@ public class CreepyController implements HttpHandler{
 
             Map inputs = Controller.parseUserInfoFromData(formData);
 
-
+            String user_id = inputs.get("id_user").toString();
             String firstName = inputs.get("firstName").toString();
             String lastName = inputs.get("lastName").toString();
             String login = inputs.get("login").toString();
@@ -69,7 +61,7 @@ public class CreepyController implements HttpHandler{
             String email = inputs.get("email").toString();
             String role = "mentor";
 
-            Mentor mentor = new Mentor(firstName, lastName, login, password, email, role);
+            Mentor mentor = new Mentor(firstName, lastName, login, password, email, role, Integer.parseInt(user_id));
 
             try {
                 userDao.addUser(mentor);

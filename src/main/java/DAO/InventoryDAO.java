@@ -28,7 +28,7 @@ public class InventoryDAO {
     }
 
 
-    public List<Integer> getArtifactsOfCodecooler(int codecoolerId) throws SQLException {
+    public static List<Integer> getArtifactsOfCodecooler(int codecoolerId) throws SQLException {
         List<Integer> artefactIdList = new ArrayList<>();
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -49,8 +49,8 @@ public class InventoryDAO {
     }
 
 
-    public List<Artifact> getListOfArtifact(List<Integer> artifactIdList) throws SQLException {
-        List<Artifact> artifactList = new ArrayList<>();
+    public static ArrayList<Artifact> getListOfArtifact(List<Integer> artifactIdList) throws SQLException {
+        ArrayList<Artifact> artifactList = new ArrayList<>();
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
 

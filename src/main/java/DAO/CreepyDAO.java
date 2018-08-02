@@ -23,6 +23,7 @@ public class CreepyDAO {
 
         while(rs.next()) {
 
+            Integer user_id = rs.getInt("id_user");
             String firstName = rs.getString("first_name");
             String lastName = rs.getString("last_name");
             String login = rs.getString("login");
@@ -30,7 +31,7 @@ public class CreepyDAO {
             String email = rs.getString("email");
             String role = "admin";
 
-            CreepyGuy admin = new CreepyGuy(firstName, lastName, login, password, email, role);
+            CreepyGuy admin = new CreepyGuy(firstName, lastName, login, password, email, role, user_id);
 
             listOfAdmins.add(admin);
 
