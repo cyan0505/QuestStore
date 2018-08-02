@@ -5,6 +5,43 @@
 		<title>Quest Store</title>
 		<link rel="stylesheet" href="/static/assets/stylesheets/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
+		<style>
+			.img__wrap {
+				  position: relative;
+				  height: 26px;
+				  width: 180px;
+				}
+
+				#progressbar {
+				  background-color: black;
+				  border-radius: 13px; /* (height of inner div) / 2 + padding */
+				  padding: 0px;
+				}
+
+				#progressbar > div {
+				   background-color: orange;/* Adjust with JavaScript */
+				   width: {{ codecooler.exp }}%;
+				   height: 26px;
+				   border-radius: 10px;
+				}
+
+				.img__description {
+				  position: absolute;
+				  top: -83%;
+				  left: 40%;
+				  background: none;
+				  color: #fff;
+				  visibility: hidden;
+				  opacity: 0;
+				  background-size: cover;
+				  transition: opacity .2s, visibility .2s;
+				}
+
+				#progressbar:hover .img__description {
+				  visibility: visible;
+				  opacity: 1;
+				}
+		</style>
 	</head>
     <body class="bg">
 		<div>
@@ -16,14 +53,14 @@
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}" class="btn">main</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile" class="btn active">profile</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/contact" class="btn">contact</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}" class="btn">main</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/profile" class="btn active">profile</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/contact" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/store" class="btn">store</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/quests" class="btn">quests</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/inventory" class="btn">inventory</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/store" class="btn">store</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/quests" class="btn">quests</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/inventory" class="btn">inventory</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -68,7 +105,7 @@
 						</tr>
 						<tr>
 							<th>Progress:</th>
-							<td><div id="progressbar" class="img__wrap"><p class="img__description ">30%</p>
+							<td><div id="progressbar" class="img__wrap"><p class="img__description ">{{ codecooler.exp }}%</p>
 									<div></div>
 								  </div></td>
 						</tr>
