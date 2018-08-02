@@ -8,9 +8,9 @@ public class Wallet {
     private List<Artifact> artifactList;
     private Integer coins;
 
-    public Wallet(){
-        this.artifactList = new ArrayList<Artifact>();
-        this.coins = 0;
+    public Wallet(ArrayList<Artifact> artifactList, Integer coins){
+        this.artifactList = artifactList;
+        this.coins = coins;
     }
 
     public Integer getCoins() {

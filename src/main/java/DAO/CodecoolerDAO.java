@@ -18,15 +18,15 @@ public class CodecoolerDAO {
 
         stmt = connection.createStatement();
 
-
         PreparedStatement stmt = connection.prepareStatement("SELECT * " +
                 "FROM user_table WHERE login='" + loginFromForm + "';");
 
         ResultSet rs = stmt.executeQuery();
-
+        Integer id_user = null;
         Codecooler codecooler = null;
 
         while (rs.next()) {
+            id_user = rs.getInt("id_user");
             String firstName = rs.getString("first_name");
             String lastName = rs.getString("last_name");
             String login = rs.getString("login");
@@ -36,6 +36,17 @@ public class CodecoolerDAO {
             codecooler = new Codecooler(firstName, lastName, login, password, email, role);
         }
 
+        stmt = connection.prepareStatement("SELECT * " +
+                "FROM codecooler WHERE id_user ='" + id_user + "';");
+
+        rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Integer coins = rs.getInt("coins");
+            Integer exp = rs.getInt("experience");
+            codecooler.setExp(exp);
+            codecooler.setInventory(list, coins);
+        }
         return codecooler;
     }
 

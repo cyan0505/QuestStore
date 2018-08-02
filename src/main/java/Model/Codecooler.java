@@ -1,6 +1,9 @@
 package Model;
 
+import BuisnessLogic.Artifact;
 import BuisnessLogic.Wallet;
+
+import java.util.ArrayList;
 
 public class Codecooler extends User {
 
@@ -10,9 +13,9 @@ public class Codecooler extends User {
 
     public Codecooler(String firstName, String lastName, String login, String password, String email, String role){
         super(firstName, lastName, login, password, email, role);
-        this.exp = 0;
+        this.exp = null;
         this.roomName = null;
-        this.inventory = new Wallet();
+        this.inventory = null;
     }
 
     public String getRoomName() {
@@ -25,6 +28,10 @@ public class Codecooler extends User {
 
     public Wallet getInventory() {
         return inventory;
+    }
+
+    public void setInventory(ArrayList<Artifact> artifactList, Integer coins){
+        this.inventory = new Wallet(artifactList, coins);
     }
 
     public void setRoomName(String roomName) {
