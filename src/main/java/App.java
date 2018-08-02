@@ -11,7 +11,6 @@ public class App {
         server.createContext("/codecooler", new CodecoolerController());
         server.createContext("/mentor", new MentorController());
 
-
         server.setExecutor(null);
         server.start();
     }
