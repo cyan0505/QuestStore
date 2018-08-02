@@ -72,4 +72,19 @@ public class QuestDAO {
         return questList;
     }
 
+    public List<List> getNestedQuestList(List<Quest> questList) {
+        List<List> listOfLists = new ArrayList<>();
+
+        int size = 3;
+
+        for(int i = 0; i < questList.size(); i += size) {
+            int end = Math.min(i + size, questList.size());
+            List<Quest> sublist = questList.subList(i, end);
+            listOfLists.add(sublist);
+        }
+
+        return listOfLists;
+
+    }
+
 }

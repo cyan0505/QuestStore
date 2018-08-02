@@ -66,8 +66,10 @@ public class MentorController implements HttpHandler {
                 response = getMentorContact(parsedUri[idIndex]);
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("store")){
-                System.out.println("WESzlo");
                 response = getMentorStore();
+            }
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("quest")){
+                response = getMentorQuest();
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("inventory")){
                 response = getMentorRoom(parsedUri[idIndex]);
@@ -117,20 +119,18 @@ public class MentorController implements HttpHandler {
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/storeMentor.twig");
         JtwigModel model = JtwigModel.newModel();
 
-
-        List<Artifact> artifactList = artefactDao.getListOfArtifact();
-        ArrayList<Integer> numberList = new ArrayList<>();
-        numberList.add(1);
-        numberList.add(2);
-        numberList.add(3);
-
-
-//        model.with("artifacts", artifactList);
-//        model.with("numbers", numberList);
-
-
         List<List> listOfLists = artefactDao.getNestedArtifactList(artefactDao.getListOfArtifact());
         model.with("artifacts", listOfLists);
+
+        return template.render(model);
+    }
+
+    private String getMentorQuest() throws SQLException {
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/quest-mentor.twig");
+        JtwigModel model = JtwigModel.newModel();
+
+        List<List> listOfLists = questDao.getNestedQuestList(questDao.getListOfQuests());
+        model.with("quests", listOfLists);
 
         return template.render(model);
     }
@@ -145,115 +145,5 @@ public class MentorController implements HttpHandler {
 
         return template.render(model);
     }
-//    @Override
-//    public void handle(HttpExchange httpExchange) throws IOException {
-//
-//        String method = httpExchange.getRequestMethod();
-//        String response = "";
-//
-//        if(method.equals("GET")) {
-//
-//            String[] uri = Controller.parseUri(httpExchange.getRequestURI().toString());
-//
-//            if (uri.length >= 3) {
-//
-//                if (uri[2].equals("delete")) {
-//
-//                    int studentId = Integer.parseInt(uri[3]);
-//
-//                    try {
-//                        userDao.deleteUser(studentId);
-//                    } catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//                if (uri[2].equals("store-mentor")) {
-//
-//                    List<Artifact> artifactList = new ArrayList<>();
-//
-//                    JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/store-mentor.twig");
-//
-//                    JtwigModel model = JtwigModel.newModel();
-//
-//                    try {
-//                        artifactList = artefactDao.getListOfArtifact();
-//                    } catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    model.with("artifactList", artifactList);
-//
-//                    response = template.render(model);
-//
-//                }
-//
-//                if(uri[2].equals("quest-mentor")) {
-//                    List<Quest> questList = new ArrayList<>();
-//
-//                    JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/quest-mentor.twig");
-//
-//                    JtwigModel model = JtwigModel.newModel();
-//
-//                    try {
-//                        questList = questDao.getListOfQuests();
-//                    } catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    model.with("questList", questList);
-//
-//                    response = template.render(model);
-//
-//                }
-//
-//                else {
-//                    Controller.redirectToLocation(httpExchange, "/main-mentor");
-//                }
-//
-//            }
-//
-//        }
-//
-//        if (method.equals("POST")) {
-//            String[] uri = Controller.parseUri(httpExchange.getRequestURI().toString());
-//
-//            if (uri[2].equals("add")) {
-//                InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody());
-//                BufferedReader br = new BufferedReader(isr);
-//                String formData = br.readLine();
-//
-//
-//                Map inputs = Controller.parseUserInfoFromData(formData);
-//
-//
-//                String firstName = inputs.get("firstName").toString();
-//                String lastName = inputs.get("lastName").toString();
-//                String login = inputs.get("login").toString();
-//                String password = inputs.get("pass").toString();
-//                String email = inputs.get("email").toString();
-//                String role = "codecooler";
-//
-//                Codecooler codecooler = new Codecooler(firstName, lastName, login, password, email, role);
-//
-//                try {
-//                    userDao.addUser(codecooler);
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            if (uri[2].equals("edit")){
-//
-//
-//            }
-//
-//        }
-//
-//        httpExchange.sendResponseHeaders(200, response.length());
-//        OutputStream os = httpExchange.getResponseBody();
-//        os.write(response.getBytes());
-//        os.close();
-//    }
 
 }
