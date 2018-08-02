@@ -13,27 +13,30 @@ public class CodecoolerDAO {
 
     private Statement stmt;
 
-    public Codecooler getCodecooler(int id) throws SQLException{
+    public Codecooler getCodecooler(String loginFromForm) throws SQLException{
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
         stmt = connection.createStatement();
 
 
-        PreparedStatement stmt = connection.prepareStatement("SELECT first_name, last_name, login, password, email" +
-                "FROM user_table WHERE role='codecooler'");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * " +
+                "FROM user_table WHERE login='" + loginFromForm + "';");
 
         ResultSet rs = stmt.executeQuery();
 
+        Codecooler codecooler = null;
 
-        String firstName = rs.getString("first_name");
-        String lastName = rs.getString("last_name");
-        String login = rs.getString("login");
-        String password = rs.getString("password");
-        String email = rs.getString("email");
-        String role = "codecooler";
+        while (rs.next()) {
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            String login = rs.getString("login");
+            String password = rs.getString("password");
+            String email = rs.getString("email");
+            String role = "codecooler";
+            codecooler = new Codecooler(firstName, lastName, login, password, email, role);
+        }
 
-
-        return new Codecooler(firstName, lastName, login, password, email, role);
+        return codecooler;
     }
 
     public List<Codecooler> getListOfCodecoolers() throws SQLException{

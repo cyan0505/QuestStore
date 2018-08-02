@@ -73,7 +73,7 @@ public class CodecoolerController implements HttpHandler{
         JtwigModel model = JtwigModel.newModel();
 
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -84,7 +84,7 @@ public class CodecoolerController implements HttpHandler{
         JtwigModel model = JtwigModel.newModel();
 
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -94,8 +94,10 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerContact.twig");
         JtwigModel model = JtwigModel.newModel();
 
+        System.out.println("sss");
+
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -106,7 +108,18 @@ public class CodecoolerController implements HttpHandler{
         JtwigModel model = JtwigModel.newModel();
 
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
+        model.with("codecooler", codecooler);
+
+        return template.render(model);
+    }
+
+    private String getCodecoolerQuest(String id) throws SQLException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerQuest.twig");
+        JtwigModel model = JtwigModel.newModel();
+
+        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
+        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -117,7 +130,7 @@ public class CodecoolerController implements HttpHandler{
         JtwigModel model = JtwigModel.newModel();
 
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
         model.with("codecooler", codecooler);
 
         return template.render(model);
