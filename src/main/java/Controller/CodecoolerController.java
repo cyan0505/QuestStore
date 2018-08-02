@@ -4,7 +4,11 @@ package Controller;
 import java.io.*;
 import java.net.URI;
 import java.sql.SQLException;
+import java.util.List;
+
+import DAO.ArtefactDAO;
 import DAO.CodecoolerDAO;
+import DAO.QuestDAO;
 import Model.Codecooler;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -15,6 +19,11 @@ import static Controller.Controller.parseUri;
 
 
 public class CodecoolerController implements HttpHandler{
+
+    private CodecoolerDAO codecoolerDao = new CodecoolerDAO();
+    private ArtefactDAO artefactDao = new ArtefactDAO();
+    private QuestDAO questDao = new QuestDAO();
+
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
@@ -58,6 +67,9 @@ public class CodecoolerController implements HttpHandler{
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("store")){
                 response = getCodecoolerStore(parsedUri[idIndex]);
             }
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("quest")){
+                response = getCodecoolerQuest(parsedUri[idIndex]);
+            }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("inventory")){
                 response = getCodecoolerInventory(parsedUri[idIndex]);
             }
@@ -72,8 +84,8 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerMainPage.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
+
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -83,8 +95,8 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerProfile.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
+
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -94,10 +106,8 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerContact.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        System.out.println("sss");
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
 
-        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -107,8 +117,10 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerStore.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
+        List<List> listOfLists = artefactDao.getNestedArtifactList(artefactDao.getListOfArtifact());
+
+        model.with("artifacts", listOfLists);
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -118,19 +130,21 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerQuest.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
+        List<List> listOfLists = questDao.getNestedQuestList(questDao.getListOfQuests());
+
         model.with("codecooler", codecooler);
+        model.with("quests", listOfLists);
 
         return template.render(model);
+
     }
 
     private String getCodecoolerInventory(String id) throws SQLException{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerInventory.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(id);
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
         model.with("codecooler", codecooler);
 
         return template.render(model);
