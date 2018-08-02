@@ -20,9 +20,9 @@
 						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">
-						<a href="store-codecooler.html" class="btn">store</a>
-						<a href="quests-codecooler.html" class="btn">quests</a>
-						<a href="wallet-codecooler.html" class="btn">inventory</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/store" class="btn">store</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/quests" class="btn">quests</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/inventory" class="btn">inventory</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -41,14 +41,12 @@
 			</section> -->
 
 			<footer class="primary-footer">
-					<small>&copy; Ekipa mocna</small>
+				<small>&copy; Ekipa mocna</small>
 				<nav>
-						<a href="http://localhost:8800/static/index.html/{{ codecooler.getId }}">Home</a>
-						<a href="speakers.html">About</a>
-						<a href="schedule.html">PlaceHolder</a>
-						<a href="venue.html">PlaceHolder</a>
-						<a href="contact.html">PlaceHolder</a>
-					</nav>
+					<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}">main</a>
+					<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile">profile</a>
+					<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact">contact</a>
+				</nav>
 			</footer>
 		</div>
 		<script>

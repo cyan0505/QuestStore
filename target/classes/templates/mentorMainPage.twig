@@ -20,8 +20,8 @@
 					</div>
 					<div class="primary-nav-right">
 						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/store" class="btn">store</a>
-						<a href="quests-mentor.html" class="btn">quests</a>
-						<a href="wallet-mentor.html" class="btn">inventory</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/quest" class="btn">quests</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/codecooler" class="btn">codecoolers</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -42,11 +42,9 @@
 			<footer class="primary-footer">
 					<small>&copy; Ekipa mocna</small>
 				<nav>
-                    <a href="http://localhost:8800/static/index.html/{{ mentor.getId }}">Home</a>
-                    <a href="speakers.html">About</a>
-                    <a href="schedule.html">PlaceHolder</a>
-                    <a href="venue.html">PlaceHolder</a>
-                    <a href="contact.html">PlaceHolder</a>
+					<a href="http://localhost:8800/mentor/{{ mentor.getId }}">main</a>
+					<a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile">profile</a>
+					<a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact">contact</a>
                 </nav>
 			</footer>
 		</div>

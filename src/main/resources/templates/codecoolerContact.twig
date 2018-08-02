@@ -19,14 +19,14 @@
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}" class="btn active">main</a>
-						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/profile" class="btn">profile</a>
-						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact" class="btn">contact</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}" class="btn">main</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile" class="btn">profile</a>
+						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact" class="btn active">contact</a>
 					</div>
 					<div class="primary-nav-right">
-						<a href="store-codecooler.html" class="btn">store</a>
-						<a href="quests-codecooler.html" class="btn">quests</a>
-						<a href="class-codecooler.html" class="btn">inventory</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/store" class="btn">store</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/quests" class="btn">quests</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/inventory" class="btn">inventory</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -60,13 +60,11 @@
 
 
 			<footer class="primary-footer">
-					<small>&copy; Ekipa mocna</small>
-				<nav>
-						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}">Home</a>
-						<a href="speakers.html">About</a>
-						<a href="schedule.html">PlaceHolder</a>
-						<a href="venue.html">PlaceHolder</a>
-						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact">PlaceHolder</a>
+				<small>&copy; Ekipa mocna</small>
+					<nav>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}">main</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile">profile</a>
+						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact">contact</a>
 					</nav>
 			</footer>
 		</div>
