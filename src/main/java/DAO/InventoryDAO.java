@@ -22,6 +22,8 @@ public class InventoryDAO {
 
         stmt.setInt(1, codecooler.getUserId());
         stmt.setInt(2, artifact.getArtifactId());
+        //stmt.setString(1, codecooler.getName());
+        //stmt.setString(2, artifact.);
 
         stmt.executeUpdate();
 
