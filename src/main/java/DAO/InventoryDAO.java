@@ -5,7 +5,6 @@ import BuisnessLogic.Quest;
 import Connection.DatabaseConnection;
 import Model.Codecooler;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +29,7 @@ public class InventoryDAO {
     }
 
 
-    public List<Quest> getArtifactsOfCodecooler() throws SQLException{
+    public List<Quest> getArtifactsOfCodecooler() throws SQLException {
         List<Quest> questList = new ArrayList<>();
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -39,7 +38,7 @@ public class InventoryDAO {
 
         ResultSet rs = stmt.executeQuery();
 
-        while(rs.next()) {
+        while (rs.next()) {
 
             String questName = rs.getString("quest_name");
             String description = rs.getString("description");
@@ -58,7 +57,7 @@ public class InventoryDAO {
 
         int size = 3;
 
-        for(int i = 0; i < inventoryList.size(); i += size) {
+        for (int i = 0; i < inventoryList.size(); i += size) {
             int end = Math.min(i + size, inventoryList.size());
             List<Artifact> sublist = inventoryList.subList(i, end);
             listOfLists.add(sublist);
