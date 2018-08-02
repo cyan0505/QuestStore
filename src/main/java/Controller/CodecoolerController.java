@@ -65,10 +65,10 @@ public class CodecoolerController implements HttpHandler{
                 response = getCodecoolerContact(parsedUri[idIndex]);
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("store")){
-                response = getCodecoolerStore();
+                response = getCodecoolerStore(parsedUri[idIndex]);
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("quest")){
-                response = getCodecoolerQuest();
+                response = getCodecoolerQuest(parsedUri[idIndex]);
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("inventory")){
                 response = getCodecoolerInventory(parsedUri[idIndex]);
@@ -84,7 +84,8 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerMainPage.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        Codecooler codecooler = codecoolerDao.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
+
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -94,7 +95,8 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerProfile.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        Codecooler codecooler = codecoolerDao.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
+
         model.with("codecooler", codecooler);
 
         return template.render(model);
@@ -104,28 +106,34 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerContact.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        Codecooler codecooler = codecoolerDao.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
+
         model.with("codecooler", codecooler);
 
         return template.render(model);
     }
 
-    private String getCodecoolerStore() throws SQLException{
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/store-codecooler.twig");
+    private String getCodecoolerStore(String id) throws SQLException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerStore.twig");
         JtwigModel model = JtwigModel.newModel();
 
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
         List<List> listOfLists = artefactDao.getNestedArtifactList(artefactDao.getListOfArtifact());
+
         model.with("artifacts", listOfLists);
+        model.with("codecooler", codecooler);
 
         return template.render(model);
     }
 
-    private String getCodecoolerQuest() throws SQLException {
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/quest-codecooler.twig");
+    private String getCodecoolerQuest(String id) throws SQLException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerQuest.twig");
         JtwigModel model = JtwigModel.newModel();
 
-
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
         List<List> listOfLists = questDao.getNestedQuestList(questDao.getListOfQuests());
+
+        model.with("codecooler", codecooler);
         model.with("quests", listOfLists);
 
         return template.render(model);
@@ -136,8 +144,7 @@ public class CodecoolerController implements HttpHandler{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerInventory.twig");
         JtwigModel model = JtwigModel.newModel();
 
-        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-        Codecooler codecooler = codecoolerDAO.getCodecooler(Integer.valueOf(id));
+        Codecooler codecooler = codecoolerDao.getCodecooler(id);
         model.with("codecooler", codecooler);
 
         return template.render(model);

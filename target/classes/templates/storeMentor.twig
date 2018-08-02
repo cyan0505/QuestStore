@@ -20,14 +20,14 @@
         <section class="hero row">
             <div class="navbar" id="myNavbar">
                 <div class="primary-nav-left">
-                    <a href="main-mentor.html" class="btn">main</a>
-                    <a href="profile-mentor.html" class="btn">profile</a>
-                    <a href="contact-mentor.html" class="btn">contact</a>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}" class="btn">main</a>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile" class="btn">profile</a>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact" class="btn">contact</a>
                 </div>
                 <div class="primary-nav-right">
-                    <a href="store-mentor.html" class="btn active">store</a>
-                    <a href="quests-mentor.html" class="btn">quests</a>
-                    <a href="mentor-coodcooler-list.html" class="btn">codecooler</a>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/store" class="btn active">store</a>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/quest" class="btn">quests</a>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/codecooler" class="btn">codecoolers</a>
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
         </section>
 
         <section class="container title">
-                <h1>Add or edit a artifacts!<br></h1>
+                <h1>Add or edit artifacts!<br></h1>
                 <button class="btn "  onclick="addArtefact();">Add-artefact</button>
                 <button class="btn">Save</button>
         </section>
@@ -64,7 +64,6 @@
                     </div>
                 </div>
 
-            {% set cardIndex = cardindex + 1 %}    
             {% endfor %}
             
         </div>
@@ -75,12 +74,10 @@
 
     <footer class="primary-footer">
             <small>&copy; Ekipa mocna</small>
-        <nav>
-                <a href="index.html">Home</a>
-                <a href="speakers.html">About</a>
-                <a href="schedule.html">PlaceHolder</a>
-                <a href="venue.html">PlaceHolder</a>
-                <a href="contact.html">PlaceHolder</a>
+                <nav>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}">main</a>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile">profile</a>
+                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact">contact</a>
             </nav>
     </footer>
 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>Quest Store</title>
+            <link rel="stylesheet" href="/static/assets/stylesheets/main.css">
+            <link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
+        </head>
+
+        <script src="scripts.js" type="text/javascript">
+
+        </script>
+
+        <body class="bg">
+
+            <header class="primary-header">
+                <a href="index.html" class="btn button-logout">Logout</a>
+                <h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getInventory.getCoins }}		</h1>
+            </header>
+
+            <section class="hero row">
+                <div class="navbar" id="myNavbar">
+                    <div class="primary-nav-left">
+                        <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}" class="btn">main</a>
+                        <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile" class="btn">profile</a>
+                        <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/contact" class="btn">contact</a>
+                    </div>
+                    <div class="primary-nav-right">
+                        <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/store" class="btn">store</a>
+                        <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/quests" class="btn active">quests</a>
+                        <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/inventory" class="btn">inventory</a>
+                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+                    </div>
+                </div>
+                <div>
+                    <h2><br><br><br>Welcome traveler...</h2><br>
+                </div>
+
+            </section>
+
+            <section class="container title">
+                <h1>Choose quests!<br></h1>
+            </section>
+
+
+            {% for quest in quests %}
+
+                <div class="flex-container perspective"  id="first-cards">
+
+                    {% for card in quest %}
+
+                    <div class="card-container">
+                        <div class="card-title">
+                            <p contenteditable="true">{{ card.name }}</p>
+                        </div>
+                        <div class="card-value">
+                            <p contenteditable="true">{{ card.price }}</p>
+                        </div>
+                        <img src="/static/assets/stylesheets/Card_quest.jpg">
+                        <div class="card-description">
+                            <p contenteditable="true">{{ card.description }}</p>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endfor %}
+
+
+
+            <footer class="primary-footer">
+                <small>&copy; Ekipa mocna</small>
+                <nav>
+                    <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}">main</a>
+                    <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile">profile</a>
+                    <a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact">contact</a>
+                </nav>
+            </footer>
+
+            <script>
+                        /* Toggle between adding and removing the "responsive" class to the navbar when the user clicks on the icon */
+                        function myFunction() {
+                            var x = document.getElementById("myNavbar");
+                            if (x.className === "navbar") {
+                                x.className += " responsive";
+                            } else {
+                                x.className = "navbar";
+                            }
+                        }
+
+                        // Add active class to the current button (highlight it)
+                        var header = document.getElementById("myNavbar");
+                        var btns = header.getElementsByClassName("btn");
+                        for (var i = 0; i < btns.length; i++) {
+                            btns[i].addEventListener("click", function() {
+                                var current = document.getElementsByClassName("active");
+                                current[0].className = current[0].className.replace(" active", "");
+                                this.className += " active";
+                            });
+                        }
+                    </script>
+        </body>
+    </html>

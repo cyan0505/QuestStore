@@ -15,14 +15,14 @@
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="http://localhost:8800/static/mentor/{{ mentor.getId }}" class="btn">main</a>
-						<a href="http://localhost:8800/static/mentor/{{ mentor.getId }}/profile" class="btn active">profile</a>
-						<a href="contact-mentor.html" class="btn">contact</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}" class="btn">main</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile" class="btn active">profile</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">
-						<a href="store-mentor.html" class="btn">store</a>
-						<a href="quests-mentor.html" class="btn">quests</a>
-						<a href="wallet-mentor.html" class="btn">inventory</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/store" class="btn">store</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/quest" class="btn">quests</a>
+						<a href="http://localhost:8800/mentor/{{ mentor.getId }}/codecooler" class="btn">codecoolers</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -61,16 +61,6 @@
 							<th>password:</th>
 							<td>{{ mentor.getPassword }}</td>
 						</tr>
-						<tr>
-							<th>Level:</th>
-							<td><h1>1</h1></td>
-						</tr>
-						<tr>
-							<th>Progress:</th>
-							<td><div id="progressbar" class="img__wrap"><p class="img__description ">30%</p>
-									<div></div>
-								  </div></td>
-						</tr>
 					</table>
 				</div>
 
@@ -80,12 +70,10 @@
 			<footer class="primary-footer">
 					<small>&copy; Ekipa mocna</small>
 				<nav>
-						<a href="index.html">Home</a>
-						<a href="speakers.html">About</a>
-						<a href="schedule.html">PlaceHolder</a>
-						<a href="venue.html">PlaceHolder</a>
-						<a href="contact.html">PlaceHolder</a>
-					</nav>
+					<a href="http://localhost:8800/mentor/{{ mentor.getId }}">main</a>
+					<a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile">profile</a>
+					<a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact">contact</a>
+				</nav>
 			</footer>
 		</div>
 		<script>

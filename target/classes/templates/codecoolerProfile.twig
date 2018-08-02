@@ -3,27 +3,27 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Quest Store</title>
-		<link rel="stylesheet" href="./main.css">
+		<link rel="stylesheet" href="/static/assets/stylesheets/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
 	</head>
     <body class="bg">
 		<div>
 			<header class="primary-header">
-				<a href="index.html" class="btn button-logout">Logout</a>
-				<h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getExp }}			</h1>
+				<a href="http://localhost:8800/static/index.html" class="btn button-logout">Logout</a>
+				<h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getInventory.getCoins }}		</h1>
 			</header>
 
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="http://localhost:8800/static/codecoler/{{ codecooler.getId }}" class="btn">main</a>
-						<a href="http://localhost:8800/static/codecooler/{{ codecooler.getId }}/profile" class="btn active">profile</a>
-						<a href="http://localhost:8800/static/codecoler/{{ codecooler.getId }}/contact" class="btn">contact</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}" class="btn">main</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile" class="btn active">profile</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/contact" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">
-						<a href="store-codecooler.html" class="btn">store</a>
-						<a href="quests-codecooler.html" class="btn">quests</a>
-						<a href="wallet-codecooler.html" class="btn">inventory</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/store" class="btn">store</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/quests" class="btn">quests</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/inventory" class="btn">inventory</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -42,17 +42,17 @@
 
 				<div class="avatar">
 					<img src="/static/assets/stylesheets/avatar.jpg" class="avatar-img">
-					<h3><br>{{ coodecooler.getLogin }}</h3>
+					<h3><br>{{ codecooler.getLogin }}</h3>
 				</div>
 				<div class="info">
 					<table style="width:100%">
 						<tr>
 							<th>First Name:</th>
-							<td>{{ coodecooler.getFirstName }}</td>
+							<td>{{ codecooler.firstName }}</td>
 						</tr>
 						<tr>
 							<th>Last Name:</th>
-							<td>{{ coodecooler.getLastName }}</td>
+							<td>{{ codecooler.lastName }}</td>
 						</tr>
 						<tr>
 							<th>email:</th>
@@ -79,14 +79,12 @@
 			</div>
 
 			<footer class="primary-footer">
-					<small>&copy; Ekipa mocna</small>
+				<small>&copy; Ekipa mocna</small>
 				<nav>
-						<a href="index.html">Home</a>
-						<a href="speakers.html">About</a>
-						<a href="schedule.html">PlaceHolder</a>
-						<a href="venue.html">PlaceHolder</a>
-						<a href="contact.html">PlaceHolder</a>
-					</nav>
+					<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}">main</a>
+					<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile">profile</a>
+					<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact">contact</a>
+				</nav>
 			</footer>
 		</div>
 		<script>

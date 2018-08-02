@@ -21,10 +21,10 @@ public class InventoryDAO {
         PreparedStatement stmt = connection.prepareStatement("INSERT INTO codecooler_artefact (id_codecooler, id_artefact)" +
                 " values (?, ?)");
 
-        stmt.setString(1, codecooler.getName());
-        stmt.setString(2, artifact.);
-
-        stmt.executeUpdate();
+//        stmt.setString(1, codecooler.getName());
+//        stmt.setString(2, artifact.);
+//
+//        stmt.executeUpdate();
 
     }
 

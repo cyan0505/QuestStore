@@ -9,7 +9,7 @@
 		<div>
 			<header class="primary-header">
 				<a href="http://localhost:8800/static/index.html" class="btn button-logout">Logout</a>
-				<h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getExp }}		</h1>
+				<h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getInventory.getCoins }}		</h1>
 			</header>
 
 			<section class="hero row">
@@ -17,12 +17,12 @@
 					<div class="primary-nav-left">
 						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}" class="btn active">main</a>
 						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile" class="btn">profile</a>
-						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact" class="btn">contact</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/contact" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">
-						<a href="store-codecooler.html" class="btn">store</a>
-						<a href="quests-codecooler.html" class="btn">quests</a>
-						<a href="wallet-codecooler.html" class="btn">inventory</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/store" class="btn">store</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/quests" class="btn">quests</a>
+						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/inventory" class="btn">inventory</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -41,14 +41,12 @@
 			</section> -->
 
 			<footer class="primary-footer">
-					<small>&copy; Ekipa mocna</small>
+				<small>&copy; Ekipa mocna</small>
 				<nav>
-						<a href="http://localhost:8800/static/index.html/{{ codecooler.getId }}">Home</a>
-						<a href="speakers.html">About</a>
-						<a href="schedule.html">PlaceHolder</a>
-						<a href="venue.html">PlaceHolder</a>
-						<a href="contact.html">PlaceHolder</a>
-					</nav>
+					<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}">main</a>
+					<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile">profile</a>
+					<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact">contact</a>
+				</nav>
 			</footer>
 		</div>
 		<script>
