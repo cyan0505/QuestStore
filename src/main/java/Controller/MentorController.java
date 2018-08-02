@@ -89,29 +89,6 @@ public class MentorController implements HttpHandler {
 
                     response = template.render(model);
 
-
-                }
-
-
-
-                if (uri[2].equals("edit_codecooler")) {
-
-                    JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/editStudent.twig");
-
-                    JtwigModel model = JtwigModel.newModel();
-
-                    response = template.render(model);
-
-                }
-
-                if (uri[2].equals("edit_quest")) {
-
-
-                }
-
-                if (uri[2].equals("edit_artifact")) {
-
-
                 }
 
                 else {
@@ -150,16 +127,17 @@ public class MentorController implements HttpHandler {
                 }
             }
 
-            if (uri[2].equals("edit")){}
+            if (uri[2].equals("edit")){
+
+
+            }
 
         }
-
 
         httpExchange.sendResponseHeaders(200, response.length());
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
-
     }
 
 }
