@@ -17,30 +17,30 @@ public class MentorDAO {
     private Statement stmt;
 
 
-    public Mentor getMentor(int id) throws SQLException{
+    public Mentor getMentor(String loginFromForm) throws SQLException{
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
         stmt = connection.createStatement();
 
 
-        PreparedStatement stmt = connection.prepareStatement("SELECT first_name, last_name, login, password, email" +
-                "FROM user_table WHERE role='mentor'");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * " +
+                "FROM user_table WHERE login='" + loginFromForm + "';");
 
         ResultSet rs = stmt.executeQuery();
 
+        Mentor mentor = null;
 
-        String firstName = rs.getString("first_name");
-        String lastName = rs.getString("last_name");
-        String login = rs.getString("login");
-        String password = rs.getString("password");
-        String email = rs.getString("email");
-        String role = "mentor";
+        while (rs.next()) {
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            String login = rs.getString("login");
+            String password = rs.getString("password");
+            String email = rs.getString("email");
+            String role = "mentor";
+            mentor = new Mentor(firstName, lastName, login, password, email, role);
 
-
-        Mentor mentor = new Mentor(firstName, lastName, login, password, email, role);
-
+        }
         return mentor;
-
     }
 
     public List<Mentor> getMentorList() throws SQLException {

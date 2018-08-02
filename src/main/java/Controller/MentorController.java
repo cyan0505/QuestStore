@@ -78,7 +78,7 @@ public class MentorController implements HttpHandler {
         JtwigModel model = JtwigModel.newModel();
 
         MentorDAO mentorDAO = new MentorDAO();
-        Mentor mentor = mentorDAO.getMentor(Integer.valueOf(id));
+        Mentor mentor = mentorDAO.getMentor(String.valueOf(id));
         model.with("mentor", mentor);
 
         return template.render(model);
@@ -89,7 +89,7 @@ public class MentorController implements HttpHandler {
         JtwigModel model = JtwigModel.newModel();
 
         MentorDAO mentorDAO = new MentorDAO();
-        Mentor mentor = mentorDAO.getMentor(Integer.valueOf(id));
+        Mentor mentor = mentorDAO.getMentor(id);
         model.with("mentor", mentor);
 
         return template.render(model);
@@ -100,7 +100,7 @@ public class MentorController implements HttpHandler {
         JtwigModel model = JtwigModel.newModel();
 
         MentorDAO mentorDAO = new MentorDAO();
-        Mentor mentor = mentorDAO.getMentor(Integer.valueOf(id));
+        Mentor mentor = mentorDAO.getMentor(String.valueOf(id));
         model.with("mentor", mentor);
 
         return template.render(model);
@@ -111,7 +111,7 @@ public class MentorController implements HttpHandler {
         JtwigModel model = JtwigModel.newModel();
 
         MentorDAO mentorDAO = new MentorDAO();
-        Mentor mentor = mentorDAO.getMentor(Integer.valueOf(id));
+        Mentor mentor = mentorDAO.getMentor(String.valueOf(id));
         model.with("mentor", mentor);
 
         return template.render(model);
@@ -122,7 +122,7 @@ public class MentorController implements HttpHandler {
         JtwigModel model = JtwigModel.newModel();
 
         MentorDAO mentorDAO = new MentorDAO();
-        Mentor mentor = mentorDAO.getMentor(Integer.valueOf(id));
+        Mentor mentor = mentorDAO.getMentor(String.valueOf(id));
         model.with("mentor", mentor);
 
         return template.render(model);
