@@ -14,7 +14,7 @@
     <body class="bg">
 
         <header class="primary-header">
-            <a href="index.html" class="btn button-logout">Logout</a>
+            <a href="http://localhost:8800/static/index.html" class="btn button-logout">Logout</a>
             <h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getInventory.getCoins }}		</h1>
         </header>
 
@@ -27,7 +27,7 @@
                 </div>
                 <div class="primary-nav-right">
                     <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/store" class="btn active">store</a>
-                    <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/quests" class="btn">quests</a>
+                    <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/quest" class="btn">quests</a>
                     <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/inventory" class="btn">inventory</a>
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                 </div>
