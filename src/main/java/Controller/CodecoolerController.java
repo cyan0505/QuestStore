@@ -145,7 +145,9 @@ public class CodecoolerController implements HttpHandler{
         JtwigModel model = JtwigModel.newModel();
 
         Codecooler codecooler = codecoolerDao.getCodecooler(id);
+
         model.with("codecooler", codecooler);
+//        model.with("inventory", codecooler.getInventory().getArtifactList());
 
         return template.render(model);
     }
