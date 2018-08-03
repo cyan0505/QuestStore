@@ -147,7 +147,7 @@ public class CodecoolerController implements HttpHandler{
         Codecooler codecooler = codecoolerDao.getCodecooler(id);
 
         model.with("codecooler", codecooler);
-        model.with("inventory", codecooler.getInventory().getArtifactList());
+//        model.with("inventory", codecooler.getInventory().getArtifactList());
 
         return template.render(model);
     }

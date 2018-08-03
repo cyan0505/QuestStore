@@ -5,6 +5,7 @@ import java.net.URI;
 import java.sql.SQLException;
 import java.util.List;
 
+import BuisnessLogic.Artifact;
 import DAO.*;
 import Model.Codecooler;
 import Model.Mentor;
@@ -39,7 +40,12 @@ public class MentorController implements HttpHandler {
 
         if(method.equals("POST")) {
 
-
+            Artifact artifact = new Artifact("New artifact", "Artifact description", 10, false);
+            try {
+                artefactDao.addArtifact(artifact);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         httpExchange.sendResponseHeaders(200, response.length());

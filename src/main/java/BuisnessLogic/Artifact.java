@@ -18,6 +18,15 @@ public class Artifact {
         this.artifactId = artifactId;
     }
 
+    public Artifact(String name, String description, Integer price, Boolean isGroup) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.isUsed = false;
+        this.isGroup = isGroup;
+    }
+
+
     public String getName() {
         return name;
     }

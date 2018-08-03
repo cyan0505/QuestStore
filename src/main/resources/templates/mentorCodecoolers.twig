@@ -63,7 +63,8 @@
                             <th contenteditable="true">{{ student.studentId }}</th>
                             <th contenteditable="true">{{ student.firstName }}</th>
                             <th contenteditable="true">{{ student.lastName }}</th>
-                            <th contenteditable="true">{{ student.age }}</th>
+                            <th contenteditable="true">{{ student.login }}</th>
+                            <th contenteditable="true">{{ student.roomName }}</th>
                             <th><a class="action-btn" href="">Edit</a><a class="action-btn" href="http://localhost:8000/students/delete/{{ student.studentId }}">Delete</a>
                         {% endfor %}
 					</tr>
