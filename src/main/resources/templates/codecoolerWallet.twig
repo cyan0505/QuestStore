@@ -9,21 +9,21 @@
     <body class="bg">
 		<div>
 			<header class="primary-header">
-				<a href="index.html" class="btn button-logout">Logout</a>
+				<a href="http://localhost:8800/static/index.html" class="btn button-logout">Logout</a>
 				<h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getInventory.getCoins }}		</h1>
 			</header>
 
 			<section class="hero row">
                     <div class="navbar" id="myNavbar">
                         <div class="primary-nav-left">
-                            <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}" class="btn">main</a>
-                            <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile" class="btn active">profile</a>
-                            <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/contact" class="btn">contact</a>
+                            <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}" class="btn">main</a>
+                            <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/profile" class="btn">profile</a>
+                            <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/contact" class="btn">contact</a>
                         </div>
                         <div class="primary-nav-right">
-                            <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/store" class="btn">store</a>
-                            <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/quests" class="btn">quests</a>
-                            <a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/inventory" class="btn">inventory</a>
+                            <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/store" class="btn">store</a>
+                            <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/quests" class="btn">quests</a>
+                            <a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/inventory" class="btn active">inventory</a>
                             <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                         </div>
                     </div>

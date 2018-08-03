@@ -869,8 +869,14 @@ input[type=submit]:hover {
     }
 }
 
- /*
-  ========================================
-  progress bar
-  ========================================
-*/
+.button-add{
+border: none;
+background: none;
+width: 40px;
+margin: 0px 130px;
+}
+
+.button-add input{
+font-family: 'Jim Nightshade', cursive;
+font-size: 40px;
+}
