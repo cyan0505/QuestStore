@@ -40,7 +40,7 @@
 
         <section class="container title">
             <h1>Add or edit quests!<br></h1>
-            <form name="addForm" method="POST" onSubmit="setTimeout(function(){window.location.reload();},10)">
+            <form name="addForm" class="button-add" method="POST" onSubmit="setTimeout(function(){window.location.reload();},10)">
                 <input class="btn " type="submit" value="Add">
             </form>
             <button class="btn">Save</button>
@@ -58,7 +58,7 @@
                         <p contenteditable="true">{{ card.name }}</p>
                     </div>
                     <div class="card-value">
-                        <p contenteditable="true">{{ card.price }}</p>
+                        <p contenteditable="true">{{ card.reward }}</p>
                     </div>
                     <img src="/static/assets/stylesheets/Card_quest.jpg">
                     <div class="card-description">
