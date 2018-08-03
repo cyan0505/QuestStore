@@ -67,7 +67,7 @@ public class CodecoolerController implements HttpHandler{
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("store")){
                 response = getCodecoolerStore(parsedUri[idIndex]);
             }
-            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("quests")){
+            else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("quest")){
                 response = getCodecoolerQuest(parsedUri[idIndex]);
             }
             else if (parsedUri.length == 4 && parsedUri[subPageIndex].equals("inventory")){
