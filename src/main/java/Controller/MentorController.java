@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import BuisnessLogic.Artifact;
+import BuisnessLogic.Quest;
 import DAO.*;
 import Model.Codecooler;
 import Model.Mentor;
@@ -23,6 +24,9 @@ public class MentorController implements HttpHandler {
     private QuestDAO questDao = new QuestDAO();
     private MentorDAO mentorDao = new MentorDAO();
     private CodecoolerDAO codecoolerDao = new CodecoolerDAO();
+    private final int mainPageIndex = 1;
+    private final int idIndex = 2;
+    private final int subPageIndex = 3;
 
 
     @Override
@@ -40,11 +44,23 @@ public class MentorController implements HttpHandler {
 
         if(method.equals("POST")) {
 
-            Artifact artifact = new Artifact("New artifact", "Artifact description", 10, false);
-            try {
-                artefactDao.addArtifact(artifact);
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if(parsedUri.length == 4 && parsedUri[subPageIndex].equals("store")) {
+
+                Artifact artifact = new Artifact("New artifact", "Artifact description", 10, false);
+                try {
+                    artefactDao.addArtifact(artifact);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(parsedUri.length == 4 && parsedUri[subPageIndex].equals("quest")) {
+                Quest quest = new Quest("New quest", "Quest description", 10, false);
+                try {
+                    questDao.addQuest(quest);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -57,9 +73,7 @@ public class MentorController implements HttpHandler {
 
     private String chooseProperPage(String[] parsedUri){
         String response="";
-        int mainPageIndex = 1;
-        int idIndex = 2;
-        int subPageIndex = 3;
+
         try {
             if (parsedUri.length == 3 && parsedUri[mainPageIndex].equals("mentor")) {
                 response = getMentorMainPage(parsedUri[idIndex]);

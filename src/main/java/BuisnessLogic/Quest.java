@@ -18,6 +18,14 @@ public class Quest {
         this.questId = questId;
     }
 
+    public Quest(String name, String description, Integer reward, Boolean isExtra) {
+        this.name = name;
+        this.description = description;
+        this.reward = reward;
+        this.isDone = false;
+        this.isExtra = isExtra;
+    }
+
     public String getName() {
         return name;
     }
