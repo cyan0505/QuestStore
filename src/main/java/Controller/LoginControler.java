@@ -22,7 +22,6 @@ public class LoginControler extends AbstractController implements HttpHandler {
         if(method.equals("POST")){
             handlePost(httpExchange);
         } else{
-            System.out.println(httpExchange.getRequestURI().toString() + "URI login");
             handleSession(httpExchange);
         }
     }
@@ -67,7 +66,6 @@ public class LoginControler extends AbstractController implements HttpHandler {
     private void showMainPage(HttpExchange httpExchange) throws IOException {
 
         String path = "./static" + httpExchange.getRequestURI().getPath();
-        System.out.println(path);
         URL fileURL = getClass().getClassLoader().getResource(path);
 
         OutputStream os = httpExchange.getResponseBody();

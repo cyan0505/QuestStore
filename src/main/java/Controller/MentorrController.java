@@ -58,8 +58,7 @@ public class MentorrController extends AbstractController implements HttpHandler
             send404(httpExchange);
         } else {
             // Object exists and is a file: accept with response code 200.
-            System.out.println("dziala to?");
-            System.out.println(response);
+            System.out.println(httpExchange.getRequestURI().toString());
             sendReq(httpExchange, response);
         }
 
@@ -72,7 +71,7 @@ public class MentorrController extends AbstractController implements HttpHandler
 
         String login = getLoginByCookie(httpExchange);
         Mentor mentor = getMentorByLogin(login);
-        System.out.println(httpExchange.getRequestURI().toString() + "Mentor Uri");
+
         if (parsedUri.length == subPageUri) {
 
             switch (parsedUri[subPageUri]) {
