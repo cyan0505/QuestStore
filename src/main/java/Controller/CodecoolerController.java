@@ -6,8 +6,10 @@ import java.net.URI;
 import java.sql.SQLException;
 import java.util.List;
 
+import BuisnessLogic.Artifact;
 import DAO.ArtefactDAO;
 import DAO.CodecoolerDAO;
+import DAO.InventoryDAO;
 import DAO.QuestDAO;
 import Model.Codecooler;
 import com.sun.net.httpserver.HttpExchange;
@@ -146,8 +148,16 @@ public class CodecoolerController implements HttpHandler{
 
         Codecooler codecooler = codecoolerDao.getCodecooler(id);
 
+        List<Integer> artifactId = InventoryDAO.getArtifactsOfCodecooler(codecoolerDao.getCodecoolerId(codecooler.getUserId()));
+
+        List<Artifact> inventory = InventoryDAO.getListOfArtifact(artifactId);
+
         model.with("codecooler", codecooler);
-//        model.with("inventory", codecooler.getInventory().getArtifactList());
+        model.with("inventory", inventory);
+
+        for(Artifact artifact : inventory) {
+            System.out.println(artifact.getArtifactId());
+        }
 
         return template.render(model);
     }

@@ -32,6 +32,7 @@ public class InventoryDAO {
 
     public static List<Integer> getArtifactsOfCodecooler(int codecoolerId) throws SQLException {
         List<Integer> artefactIdList = new ArrayList<>();
+        System.out.println(codecoolerId);
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
@@ -58,7 +59,7 @@ public class InventoryDAO {
 
         for(int i = 0; i < artifactIdList.size(); i++) {
 
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM artefact WHERE id='"
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM artefact WHERE id_artefact='"
                     + artifactIdList.get(i) + "';");
 
             ResultSet rs = stmt.executeQuery();
@@ -76,7 +77,9 @@ public class InventoryDAO {
                 artifactList.add(artifact);
             }
         }
-
+        for(Artifact artifact : artifactList) {
+            System.out.println(artifact.getArtifactId());
+        }
         return artifactList;
     }
 
