@@ -18,10 +18,11 @@ public class Session {
         connectionList.add(this);
     }
 
-    public static String getUSER_LOGIN(String uuid) {
-
+    public static String getUSER_LOGIN(String cookieValue) {
         for (Session session : connectionList){
-            if(session.uuid.equals(uuid)) return session.USER_LOGIN;
+            if(session.uuid.toString().equals(cookieValue)) {
+                return session.USER_LOGIN;
+            }
         }
         return null;
     }

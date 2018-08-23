@@ -1,8 +1,5 @@
 package Controller;
 
-import DAO.CodecoolerDAO;
-import DAO.CreepyDAO;
-import DAO.MentorDAO;
 import Model.Session;
 import Model.User;
 import com.sun.net.httpserver.HttpExchange;
@@ -13,26 +10,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpCookie;
-import java.net.URI;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class LoginControler extends AbstractController implements HttpHandler {
 
-    //private final String path = "static/index.html";
-
     @Override
     public void handle(HttpExchange httpExchange) throws IOException{
         String method = httpExchange.getRequestMethod();
-        URI uri = httpExchange.getRequestURI();
-        String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
-        System.out.println(cookieStr + " cookie from login");
+
         if(method.equals("POST")){
             handlePost(httpExchange);
         } else{
+            System.out.println(httpExchange.getRequestURI().toString() + "URI login");
             handleSession(httpExchange);
         }
     }
@@ -44,7 +34,7 @@ public class LoginControler extends AbstractController implements HttpHandler {
         String formData = br.readLine();
 
         Map<String,String> inputs = parseUserInfoFromData(formData);
-        User user = getUserObject(inputs);
+        User user = getUserByLoginAndPassword(inputs);
 
         if (user != null){
             Session session = new Session(user.getLogin());
@@ -61,20 +51,23 @@ public class LoginControler extends AbstractController implements HttpHandler {
     private void handleSession(HttpExchange httpExchange) throws IOException{
 
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
-        HttpCookie cookie = new HttpCookie("Session-id", cookieStr);
 
         if(cookieStr == null){
             showMainPage(httpExchange);
         } else{
-            redirectToLocation(httpExchange, "");
+            String cookieValue = getCookieValueBetweenQuotes(cookieStr);
+            String login = Session.getUSER_LOGIN(cookieValue);
+            User user = getUserByLogin(login);
+            System.out.println("cookie exist");
+            redirectToLocation(httpExchange,"/" + user.getRole());
         }
     }
 
 
     private void showMainPage(HttpExchange httpExchange) throws IOException {
 
-        String path = "." + httpExchange.getRequestURI().getPath();
-
+        String path = "./static" + httpExchange.getRequestURI().getPath();
+        System.out.println(path);
         URL fileURL = getClass().getClassLoader().getResource(path);
 
         OutputStream os = httpExchange.getResponseBody();
@@ -90,33 +83,5 @@ public class LoginControler extends AbstractController implements HttpHandler {
         os.close();
     }
 
-    private User getUserObject(Map<String,String> inputs){
-        List<User> users = getUsers();
-        String password = inputs.get("psw");
-        String login = inputs.get("uname");
 
-        for (User user : users){
-            if(user.getLogin().equals(password) && user.getPassword().equals(password)){
-                return user;
-            }
-        }
-        return null;
-    }
-
-    private List<User> getUsers() {
-        List<User> users = new ArrayList<>();
-        MentorDAO mentorDAO = new MentorDAO();
-        CreepyDAO creepyDAO = new CreepyDAO();
-        CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
-
-        try {
-            users.addAll(mentorDAO.getMentorList());
-            users.addAll(creepyDAO.getListOfAdmins());
-            users.addAll(codecoolerDAO.getListOfCodecoolers());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return users;
-    }
 }
