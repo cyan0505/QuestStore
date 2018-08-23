@@ -75,6 +75,20 @@ public class CodecoolerDAO {
 
             Codecooler codecooler = new Codecooler(firstName, lastName, login, password, email, role, user_id);
 
+            stmt = connection.prepareStatement("SELECT * " +
+                    "FROM codecooler WHERE id_user ='" + codecooler.getUserId() + "';");
+
+            List<Integer> list = InventoryDAO.getArtifactsOfCodecooler(codecooler.getUserId());
+            ArrayList<Artifact> artifactList = InventoryDAO.getListOfArtifact(list);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Integer coins = rs.getInt("coins");
+                Integer exp = rs.getInt("experience");
+                codecooler.setExp(exp);
+                codecooler.setInventory(artifactList, coins);
+            }
+
             codecoolerList.add(codecooler);
         }
 

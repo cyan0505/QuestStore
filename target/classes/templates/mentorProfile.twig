@@ -41,25 +41,25 @@
 
 				<div class="avatar">
 					<img src="/static/assets/stylesheets/avatar.jpg" class="avatar-img">
-					<h3><br>{{ mentor.getLogin }}</h3>
+					<h3><br>{{ mentor.getLogin() }}</h3>
 				</div>
 				<div class="info">
 					<table style="width:100%">
 						<tr>
 							<th>First Name:</th>
-							<td>{{ mentor.getFirstName }}</td>
+							<td>{{ mentor.getFirstName() }}</td>
 						</tr>
 						<tr>
 							<th>Last Name:</th>
-							<td>{{ mentor.getLastName }}</td>
+							<td>{{ mentor.getLastName() }}</td>
 						</tr>
 						<tr>
 							<th>email:</th>
-							<td contenteditable="true">{{ mentor.getEmail }}</td>
+							<td contenteditable="true">{{ mentor.getEmail() }}</td>
 						</tr>
 						<tr>
 							<th>password:</th>
-							<td>{{ mentor.getPassword }}</td>
+							<td>{{ mentor.getPassword() }}</td>
 						</tr>
 					</table>
 				</div>
