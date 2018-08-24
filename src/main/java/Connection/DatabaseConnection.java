@@ -22,7 +22,7 @@ public class DatabaseConnection {
 
     public Connection getConnection() {
         try {
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/QuestStore", "postgres", "1patryk"); // set user and password
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/QuestStore", "riczard", "1patryk"); // set user and password
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

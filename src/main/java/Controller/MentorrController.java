@@ -97,31 +97,33 @@ public class MentorrController extends AbstractController implements HttpHandler
 
     private String chooseProperPage(String[] parsedUri, HttpExchange httpExchange) throws SQLException {
         String response = "";
-        int subPageUri = 3;
-
+        int subPageUri = 2;
+        System.out.println(httpExchange.getRequestURI().toString());
         String login = getLoginByCookie(httpExchange);
         Mentor mentor = getMentorByLogin(login);
 
-        if (parsedUri.length == subPageUri) {
+        if (parsedUri.length == 3) {
 
-            switch (parsedUri[subPageUri - 1]) {
 
-                case "profile":
-                    response = renderPage(mentor, "templates/mentorProfile.twig");
-                case "contact":
-                    response = renderPage(mentor, "templates/mentorContact.twig");
-                case "store":
-                    response = getMentorStore();
-                case "quest":
-                    response = getMentorQuest();
-                case "codecooler":
+            if(parsedUri[subPageUri].equals("profile")){
+                response = renderPage(mentor, "templates/mentorProfile.twig");
+            }
+            else if(parsedUri[subPageUri].equals("contact")){
+                response = renderPage(mentor, "templates/mentorContact.twig");
+            }
+            else if(parsedUri[subPageUri].equals("store")){
+                response = getMentorStore();
+            }
+            else if(parsedUri[subPageUri].equals("quest")){
+                response = getMentorQuest();
+            }
+            else if(parsedUri[subPageUri].equals("codecooler")){
                     response = getMentorCodecoolerList(mentor);
             }
+
         }else {
             response = renderPage(mentor, "templates/mentorMainPage.twig");
         }
-
-
 
         return response;
     }
