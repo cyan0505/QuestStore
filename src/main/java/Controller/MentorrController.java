@@ -35,6 +35,7 @@ public class MentorrController extends AbstractController implements HttpHandler
         } else {
 
             try {
+                System.out.println(httpExchange.getRequestURI().toString());
                 handleSession(httpExchange);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -43,6 +44,14 @@ public class MentorrController extends AbstractController implements HttpHandler
     }
 
     private void handlePost(HttpExchange httpExchange) throws IOException {
+        String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
+
+        // Check if cookie already exists and if it's UUID is contained by sessionPool
+        if (cookieStr == null) {
+            redirectToLocation(httpExchange,"/");
+        } else {
+            //redirect(httpExchange,"/profile");
+        }
 
     }
 
@@ -58,7 +67,6 @@ public class MentorrController extends AbstractController implements HttpHandler
             send404(httpExchange);
         } else {
             // Object exists and is a file: accept with response code 200.
-            System.out.println(httpExchange.getRequestURI().toString());
             sendReq(httpExchange, response);
         }
 

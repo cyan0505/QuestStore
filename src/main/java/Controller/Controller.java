@@ -52,7 +52,7 @@ public class Controller implements HttpHandler {
                 sessionIdList.add(httpExchange.getRequestHeaders().getFirst("Cookie"));
                 redirectToProperController(httpExchange, user);
             } else{
-                redirectToLocation(httpExchange, "/static/index.html");
+                redirectToLocation(httpExchange, "/index.html");
             }
         }
 

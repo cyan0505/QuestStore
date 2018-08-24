@@ -66,14 +66,15 @@ public abstract class AbstractController {
 
         final int NOW = -1;
         exchange.getResponseHeaders().set("Location", location);
-
+        
         try {
             exchange.sendResponseHeaders(302, -1);
         } catch (IOException e) {
-            System.out.println("problem?");
             e.printStackTrace();
         }
     }
+
+
 
     public Map<String, String> parseUserInfoFromData(String fromData) throws UnsupportedEncodingException {
 
