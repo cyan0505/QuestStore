@@ -43,7 +43,7 @@ public class LoginControler extends AbstractController implements HttpHandler {
 
         } else {
             System.out.println("Wrong password or login!!!!");
-            redirectToLocation(httpExchange, "/index.html");
+            redirectToLocation(httpExchange, "/html/index.html");
         }
     }
 
@@ -65,7 +65,7 @@ public class LoginControler extends AbstractController implements HttpHandler {
 
     private void showMainPage(HttpExchange httpExchange) throws IOException {
 
-        String path = "." + httpExchange.getRequestURI().getPath();
+        String path = "html/" + httpExchange.getRequestURI().getPath();
         URL fileURL = getClass().getClassLoader().getResource(path);
 
         OutputStream os = httpExchange.getResponseBody();

@@ -11,6 +11,7 @@ public class App {
         server.createContext("/", new LoginControler());
         server.createContext("/codecooler", new CodecoolerController());
         server.createContext("/mentor", new MentorrController());
+        server.createContext("/static", new StaticHandler());
 
         server.setExecutor(null);
         server.start();

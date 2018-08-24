@@ -1,5 +1,7 @@
 package Controller;
 
+import BuisnessLogic.Artifact;
+import BuisnessLogic.Quest;
 import DAO.ArtefactDAO;
 import DAO.CodecoolerDAO;
 import DAO.MentorDAO;
@@ -35,7 +37,6 @@ public class MentorrController extends AbstractController implements HttpHandler
         } else {
 
             try {
-                System.out.println(httpExchange.getRequestURI().toString());
                 handleSession(httpExchange);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -46,11 +47,32 @@ public class MentorrController extends AbstractController implements HttpHandler
     private void handlePost(HttpExchange httpExchange) throws IOException {
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
 
+        URI uri = httpExchange.getRequestURI();
+        String[] parsedUri = parseUri(uri.toString());
         // Check if cookie already exists and if it's UUID is contained by sessionPool
+
         if (cookieStr == null) {
-            redirectToLocation(httpExchange,"/");
+            redirectToLocation(httpExchange, "/html/index.html");
         } else {
-            //redirect(httpExchange,"/profile");
+
+            if(parsedUri.length == 3 && parsedUri[2].equals("store")) {
+
+                Artifact artifact = new Artifact("New artifact", "Artifact description", 10, false);
+                try {
+                    artefactDao.addArtifact(artifact);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(parsedUri.length == 3 && parsedUri[2].equals("quest")) {
+                Quest quest = new Quest("New quest", "Quest description", 10, false);
+                try {
+                    questDao.addQuest(quest);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }
@@ -82,7 +104,7 @@ public class MentorrController extends AbstractController implements HttpHandler
 
         if (parsedUri.length == subPageUri) {
 
-            switch (parsedUri[subPageUri]) {
+            switch (parsedUri[subPageUri - 1]) {
 
                 case "profile":
                     response = renderPage(mentor, "templates/mentorProfile.twig");
