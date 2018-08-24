@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Quest Store</title>
-		<link rel="stylesheet" href="/static/assets/stylesheets/main.css">
+        <link rel="stylesheet" href="/static/css/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
 		<script>
 
@@ -15,21 +15,21 @@
     <body class="bg">
 		<div>
 			<header class="primary-header">
-				<a href="http://localhost:8800/static/index.html" class="btn button-logout">Logout</a>
+				<a href="html/index.html" class="btn button-logout">Logout</a>
 				<h1>Exp: 			Coins:			</h1>
 			</header>
 
 			<section class="hero row">
                 <div class="navbar" id="myNavbar">
                     <div class="primary-nav-left">
-                        <a href="http://localhost:8800/mentor/{{ mentor.getId }}" class="btn">main</a>
-                        <a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile" class="btn">profile</a>
-                        <a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact" class="btn active">contact</a>
+                        <a href="/mentor" class="btn">main</a>
+                        <a href="/mentor/profile" class="btn">profile</a>
+                        <a href="/mentor/contact" class="btn active">contact</a>
                     </div>
                     <div class="primary-nav-right">
-                        <a href="http://localhost:8800/mentor/{{ mentor.getId }}/store" class="btn">store</a>
-                        <a href="http://localhost:8800/mentor/{{ mentor.getId }}/quest" class="btn">quests</a>
-                        <a href="http://localhost:8800/mentor/{{ mentor.getId }}/codecooler" class="btn">codecoolers</a>
+                        <a href="/mentor/store" class="btn">store</a>
+                        <a href="/mentor/quest" class="btn">quests</a>
+                        <a href="/mentor/codecooler" class="btn">codecoolers</a>
                         <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                     </div>
                 </div>
