@@ -5,13 +5,13 @@ import DAO.CreepyDAO;
 import DAO.MentorDAO;
 import Model.Session;
 import Model.User;
-import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import helpers.MimeTypeResolver;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
 import java.io.*;
+import java.net.HttpCookie;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.sql.SQLException;
@@ -19,12 +19,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public abstract class AbstractController {
+abstract class AbstractController {
 
-    protected void sendFile(HttpExchange httpExchange, URL fileURL) throws IOException {
+    void sendFile(HttpExchange httpExchange, URL fileURL) throws IOException {
         // get the file
         File file = new File(fileURL.getFile());
         // we need to find out the mime type of the file, see: https://en.wikipedia.org/wiki/Media_type
@@ -46,15 +44,15 @@ public abstract class AbstractController {
         os.close();
     }
 
-    protected void send404(HttpExchange httpExchange) throws IOException {
+    void send404(HttpExchange httpExchange) throws IOException {
         String response = "404 (Not Found)\n";
         httpExchange.sendResponseHeaders(404, response.length());
         OutputStream os = httpExchange.getResponseBody();
-        os.write(response.toString().getBytes());
+        os.write(response.getBytes());
         os.close();
     }
 
-    protected void sendReq(HttpExchange httpExchange, String response) throws IOException {
+    void sendReq(HttpExchange httpExchange, String response) throws IOException {
 
         httpExchange.sendResponseHeaders(200, response.length());
         OutputStream os = httpExchange.getResponseBody();
@@ -62,9 +60,8 @@ public abstract class AbstractController {
         os.close();
     }
 
-    public void redirectToLocation(HttpExchange exchange, String location) {
+    void redirectToLocation(HttpExchange exchange, String location) {
 
-        final int NOW = -1;
         exchange.getResponseHeaders().set("Location", location);
         
         try {
@@ -76,7 +73,7 @@ public abstract class AbstractController {
 
 
 
-    public Map<String, String> parseUserInfoFromData(String fromData) throws UnsupportedEncodingException {
+    Map<String, String> parseUserInfoFromData(String fromData) throws UnsupportedEncodingException {
 
         Map<String, String> map = new HashMap<>();
         String[] pairs = fromData.split("&");
@@ -90,28 +87,13 @@ public abstract class AbstractController {
         return map;
     }
 
-    public String getCookieValueBetweenQuotes(String cookieStr){
-
-        String[] data = cookieStr.split("=");
-        String cookieValue = "";
-        String pattern1 = "\"";
-
-        Pattern p = Pattern.compile(Pattern.quote(pattern1) + "(.*?)" + Pattern.quote(pattern1));
-        Matcher m = p.matcher(data[1]);
-        while (m.find()) {
-            cookieValue = m.group(1);
-        }
-        return cookieValue;
-
-    }
-
-    protected User getUserByLoginAndPassword(Map<String,String> inputs){
+    User getUserByLoginAndPassword(Map<String,String> inputs){
         List<User> users = getUsers();
         String password = inputs.get("psw");
         String login = inputs.get("uname");
 
         for (User user : users){
-            if(user.getLogin().equals(password) && user.getPassword().equals(password)){
+            if(user.getLogin().equals(login) && user.getPassword().equals(password)){
                 return user;
             }
         }
@@ -135,7 +117,7 @@ public abstract class AbstractController {
         return users;
     }
 
-    protected User getUserByLogin(String login){
+    User getUserByLogin(String login){
 
         List<User> users = getUsers();
 
@@ -147,7 +129,7 @@ public abstract class AbstractController {
         return null;
     }
 
-    protected String renderPage(User user, String path){
+    String renderPage(User user, String path){
         JtwigTemplate template = JtwigTemplate.classpathTemplate(path);
         JtwigModel model = JtwigModel.newModel();
         model.with(user.getRole(), user);
@@ -155,9 +137,17 @@ public abstract class AbstractController {
         return template.render(model);
     }
 
-    protected String getLoginByCookie(HttpExchange httpExchange){
+    String getLoginByCookie(HttpExchange httpExchange){
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
-        String cookieValue = getCookieValueBetweenQuotes(cookieStr);
-        return Session.getUSER_LOGIN(cookieValue);
+        HttpCookie cookie = new HttpCookie("Session-id", cookieStr);
+        return Session.getUSER_LOGIN(cookie.getValue());
+    }
+
+    boolean isSessionCookie(HttpCookie cookie){
+        return Session.connectionHaveThisCookie(cookie);
+    }
+
+    String[] parseUri(String uri){
+        return uri.split("/");
     }
 }

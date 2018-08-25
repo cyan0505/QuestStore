@@ -38,26 +38,25 @@ public class LoginControler extends AbstractController implements HttpHandler {
         if (user != null){
             Session session = new Session(user.getLogin());
             HttpCookie cookie = session.getCookie();
-            httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
+            httpExchange.getResponseHeaders().add("Set-Cookie", cookie.getValue());
             redirectToLocation(httpExchange, "/" + user.getRole());
 
         } else {
             System.out.println("Wrong password or login!!!!");
-            redirectToLocation(httpExchange, "/html/index.html");
+            redirectToLocation(httpExchange, "/index.html");
         }
     }
 
     private void handleSession(HttpExchange httpExchange) throws IOException{
 
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
+        HttpCookie cookie = new HttpCookie("Session-id", cookieStr);
 
-        if(cookieStr == null){
+        if(cookieStr == null || !isSessionCookie(cookie)){
             showMainPage(httpExchange);
         } else{
-            String cookieValue = getCookieValueBetweenQuotes(cookieStr);
-            String login = Session.getUSER_LOGIN(cookieValue);
+            String login = Session.getUSER_LOGIN(cookie.getValue());
             User user = getUserByLogin(login);
-            System.out.println("cookie exist");
             redirectToLocation(httpExchange,"/" + user.getRole());
         }
     }

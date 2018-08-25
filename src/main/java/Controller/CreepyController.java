@@ -10,7 +10,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 
-public class CreepyController implements HttpHandler{
+public class CreepyController extends AbstractController implements HttpHandler{
 
     private UserDAO userDao = new UserDAO();
 
@@ -22,7 +22,7 @@ public class CreepyController implements HttpHandler{
 
         if(method.equals("GET")) {
 
-            String[] uri = Controller.parseUri(httpExchange.getRequestURI().toString());
+            String[] uri = parseUri(httpExchange.getRequestURI().toString());
 
             if(uri.length >= 3) {
 
@@ -39,7 +39,7 @@ public class CreepyController implements HttpHandler{
                 }
 
                 else {
-                    Controller.redirectToLocation(httpExchange, "main-admin");
+                    redirectToLocation(httpExchange, "main-admin");
                 }
 
             }
@@ -51,7 +51,7 @@ public class CreepyController implements HttpHandler{
             BufferedReader br = new BufferedReader(isr);
             String formData = br.readLine();
 
-            Map inputs = Controller.parseUserInfoFromData(formData);
+            Map inputs = parseUserInfoFromData(formData);
 
             String user_id = inputs.get("id_user").toString();
             String firstName = inputs.get("firstName").toString();

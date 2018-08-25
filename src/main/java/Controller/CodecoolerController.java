@@ -1,24 +1,20 @@
 package Controller;
 
 
-import java.io.*;
-import java.net.URI;
-import java.sql.SQLException;
-import java.util.List;
-
 import DAO.ArtefactDAO;
 import DAO.CodecoolerDAO;
-import DAO.MentorDAO;
 import DAO.QuestDAO;
 import Model.Codecooler;
-import Model.Mentor;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
-import static Controller.Controller.parseUri;
+import java.io.IOException;
+import java.net.HttpCookie;
+import java.net.URI;
+import java.sql.SQLException;
+import java.util.List;
 
 
 public class CodecoolerController extends AbstractController implements HttpHandler{
@@ -31,6 +27,8 @@ public class CodecoolerController extends AbstractController implements HttpHand
     public void handle(HttpExchange httpExchange) throws IOException{
 
         String method = httpExchange.getRequestMethod();
+
+
         if(method.equals("POST")){
             handlePost(httpExchange);
         }else{
@@ -48,13 +46,14 @@ public class CodecoolerController extends AbstractController implements HttpHand
 
     private void handleSession(HttpExchange httpExchange) throws IOException, SQLException{
 
-        String respone = chooseProperPage(httpExchange);
-        OutputStream os = httpExchange.getResponseBody();
+        String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
+        HttpCookie cookie = new HttpCookie("Session-id", cookieStr);
 
-        if(respone == null){
-            send404(httpExchange);
+        if(cookieStr == null || !isSessionCookie(cookie)){
+            redirectToLocation(httpExchange,"/index.html");
         } else{
-            sendReq(httpExchange, respone);
+            String response = chooseProperPage(httpExchange);
+            sendReq(httpExchange, response);
         }
     }
 

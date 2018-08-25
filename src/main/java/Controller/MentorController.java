@@ -14,12 +14,10 @@ import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.net.HttpCookie;
 import java.net.URI;
 import java.sql.SQLException;
 import java.util.List;
-
-import static Controller.Controller.parseUri;
 
 public class MentorController extends AbstractController implements HttpHandler {
 
@@ -78,25 +76,27 @@ public class MentorController extends AbstractController implements HttpHandler 
     }
 
     private void handleSession(HttpExchange httpExchange) throws IOException, SQLException {
-        URI uri = httpExchange.getRequestURI();
 
-        String[] parsedUri = parseUri(uri.toString());
-        String response = chooseProperPage(parsedUri, httpExchange);
-        OutputStream os = httpExchange.getResponseBody();
+        String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
+        HttpCookie cookie = new HttpCookie("Session-id", cookieStr);
 
-        if (response == null) {
+        if (cookieStr == null || !isSessionCookie(cookie)) {
             // Object does not exist or is not a file: reject with 404 error.
             send404(httpExchange);
         } else {
             // Object exists and is a file: accept with response code 200.
+            String response = chooseProperPage(httpExchange);
             sendReq(httpExchange, response);
         }
 
-        os.close();
     }
 
-    private String chooseProperPage(String[] parsedUri, HttpExchange httpExchange) throws SQLException {
+    private String chooseProperPage(HttpExchange httpExchange) throws SQLException {
+        URI uri = httpExchange.getRequestURI();
+        String[] parsedUri = parseUri(uri.toString());
+
         String response = "";
+
         int subPageUri = 2;
         int subPageUriLength = 3;
         String login = getLoginByCookie(httpExchange);
