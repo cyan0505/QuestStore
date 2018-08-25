@@ -31,12 +31,11 @@ public class Session {
         return uuid;
     }
 
-    public void removeSessionBy(String login){
+    public static void removeSessionByCookie(HttpCookie cookie){
 
         for(Session session : connectionList){
-            if(session.USER_LOGIN.equals(login)){
+            if(session.uuid.toString().equals(cookie.getValue())){
                 connectionList.remove(session);
-                break;
             }
         }
     }
@@ -45,5 +44,15 @@ public class Session {
 
         return new HttpCookie("Session-id", this.uuid.toString());
 
+    }
+
+    public static boolean connectionHaveThisCookie(HttpCookie cookie){
+
+        for(Session session: connectionList){
+            if(session.getUuid().toString().equals(cookie.getValue())){
+                return true;
+            }
+        }
+        return false;
     }
 }
