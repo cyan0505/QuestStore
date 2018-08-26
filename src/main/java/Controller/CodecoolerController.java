@@ -14,13 +14,16 @@ import java.io.IOException;
 import java.net.HttpCookie;
 import java.net.URI;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class CodecoolerController extends AbstractController implements HttpHandler{
 
-    private ArtefactDAO artefactDao = new ArtefactDAO();
-    private QuestDAO questDao = new QuestDAO();
+    private final ArtefactDAO artefactDao = new ArtefactDAO();
+    private final QuestDAO questDao = new QuestDAO();
+    private List<List> nestedArtifactList;
+    private List<List> nestedQuestList;
 
 
     @Override
@@ -93,6 +96,38 @@ public class CodecoolerController extends AbstractController implements HttpHand
         }
         return response;
     }
+
+//    private String chooseProperPage(HttpExchange httpExchange) throws SQLException{
+//        URI uri = httpExchange.getRequestURI();
+//        String[] parsedUri = parseUri(uri.toString());
+//
+//        String response="";
+//
+//        int subPageIndex = 2;
+//        int subPageUriLength = 3;
+//
+//        String login = getLoginByCookie(httpExchange);
+//        Codecooler codecooler =getCodecoolerByLogin(login);
+//        nestedArtifactList = artefactDao.getNestedArtifactList(artefactDao.getListOfArtifact());
+//        nestedQuestList = questDao.getNestedQuestList(questDao.getListOfQuests());
+//
+//
+//        HashMap<String, Object> data = new HashMap<>();
+//        data.put("codecooler", codecooler);
+//        data.put("artifacts", nestedArtifactList);
+//        data.put("quests", nestedQuestList);
+//
+//
+//        if (parsedUri.length == subPageUriLength) {
+//
+//            String subPageName = parsedUri[subPageIndex].substring(0, 1).toUpperCase() + parsedUri[subPageIndex].substring(1);
+//            response = renderPage(data, "templates/mentor" + subPageName + ".twig");
+//        }else{
+//            response = renderPage(data, "templates/codecoolerMainPage.twig");
+//        }
+//
+//        return response;
+//    }
 
 
 

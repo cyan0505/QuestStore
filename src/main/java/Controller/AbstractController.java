@@ -137,6 +137,17 @@ abstract class AbstractController {
         return template.render(model);
     }
 
+//    String renderPage(HashMap<String,Object> data, String path){
+//        JtwigTemplate template = JtwigTemplate.classpathTemplate(path);
+//        JtwigModel model = JtwigModel.newModel();
+//
+//        for(HashMap.Entry<String,Object> entry : data.entrySet()){
+//            model.with(entry.getKey(), entry.getValue());
+//        }
+//
+//        return template.render(model);
+//    }
+
     String getLoginByCookie(HttpExchange httpExchange){
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
         HttpCookie cookie = new HttpCookie("Session-id", cookieStr);

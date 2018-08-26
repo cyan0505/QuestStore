@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.HttpCookie;
 import java.net.URI;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 public class MentorController extends AbstractController implements HttpHandler {
@@ -127,6 +128,41 @@ public class MentorController extends AbstractController implements HttpHandler 
 
         return response;
     }
+
+//    private String chooseProperPage(HttpExchange httpExchange) throws SQLException {
+//        URI uri = httpExchange.getRequestURI();
+//        String[] parsedUri = parseUri(uri.toString());
+//
+//        String response = "";
+//
+//        int subPageIndex = 2;
+//        int subPageUriLength = 3;
+//
+//        String login = getLoginByCookie(httpExchange);
+//        Mentor mentor = getMentorByLogin(login);
+//        List<List> nestedArtifactList = artefactDao.getNestedArtifactList(artefactDao.getListOfArtifact());
+//        List<List> nestedQuestList = questDao.getNestedQuestList(questDao.getListOfQuests());
+//        List<Codecooler> codecoolerList = codecoolerDao.getListOfCodecoolers();
+//
+//        HashMap<String, Object> data = new HashMap<>();
+//        data.put("mentor", mentor);
+//        data.put("artifacts", nestedArtifactList);
+//        data.put("quests", nestedQuestList);
+//        data.put("studentList", codecoolerList);
+//
+//
+//
+//        if (parsedUri.length == subPageUriLength) {
+//
+//            String subPageName = parsedUri[subPageIndex].substring(0,1).toUpperCase() + parsedUri[subPageIndex].substring(1);
+//            response = renderPage(data, "templates/mentor" + subPageName + ".twig");
+//
+//        }else {
+//            response = renderPage(data, "templates/mentorMainPage.twig");
+//        }
+//
+//        return response;
+//    }
 
     private String getMentorStore() throws SQLException {
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentorStore.twig");
