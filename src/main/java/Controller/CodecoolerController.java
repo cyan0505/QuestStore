@@ -1,8 +1,16 @@
 package Controller;
 
 
+import java.io.*;
+import java.net.URI;
+import java.sql.SQLException;
+import java.util.List;
+
+import BuisnessLogic.Artifact;
+
 import DAO.ArtefactDAO;
 import DAO.CodecoolerDAO;
+import DAO.InventoryDAO;
 import DAO.QuestDAO;
 import Model.Codecooler;
 import com.sun.net.httpserver.HttpExchange;
@@ -22,6 +30,7 @@ public class CodecoolerController extends AbstractController implements HttpHand
 
     private final ArtefactDAO artefactDao = new ArtefactDAO();
     private final QuestDAO questDao = new QuestDAO();
+    private final CodecoolerDAO codecoolerDao = new CodecoolerDAO();
     private List<List> nestedArtifactList;
     private List<List> nestedQuestList;
 
@@ -88,7 +97,7 @@ public class CodecoolerController extends AbstractController implements HttpHand
                 response = getCodecoolerQuest(codecooler);
             }
             else if(parsedUri[subPageIndex].equals("inventory")){
-                response = renderPage(codecooler, "templates/codecoolerWallet.twig");
+                response = getCodecoolerInventory(codecooler);
             }
 
         } else{
@@ -157,8 +166,30 @@ public class CodecoolerController extends AbstractController implements HttpHand
     }
 
 
+
     private Codecooler getCodecoolerByLogin(String login) throws SQLException {
         CodecoolerDAO codecoolerDAO = new CodecoolerDAO();
         return codecoolerDAO.getCodecooler(login);
     }
+
+
+    private String getCodecoolerInventory(Codecooler codecooler) throws SQLException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/codecoolerWallet.twig");
+        JtwigModel model = JtwigModel.newModel();
+
+
+        List<Integer> artifactId = InventoryDAO.getArtifactsOfCodecooler(codecoolerDao.getCodecoolerId(codecooler.getUserId()));
+
+        List<Artifact> inventory = InventoryDAO.getListOfArtifact(artifactId);
+
+        model.with("codecooler", codecooler);
+        model.with("inventory", inventory);
+
+        for(Artifact artifact : inventory) {
+            System.out.println(artifact.getArtifactId());
+        }
+
+        return template.render(model);
+    }
+
 }

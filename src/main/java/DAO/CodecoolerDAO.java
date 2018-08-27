@@ -14,7 +14,7 @@ public class CodecoolerDAO {
 
     private Statement stmt;
 
-    public Codecooler getCodecooler(String loginFromForm) throws SQLException{
+    public Codecooler getCodecooler(String loginFromForm) throws SQLException {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
         stmt = connection.createStatement();
@@ -52,7 +52,7 @@ public class CodecoolerDAO {
         return codecooler;
     }
 
-    public List<Codecooler> getListOfCodecoolers() throws SQLException{
+    public List<Codecooler> getListOfCodecoolers() throws SQLException {
         List<Codecooler> codecoolerList = new ArrayList<>();
 
         Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -62,7 +62,7 @@ public class CodecoolerDAO {
 
         ResultSet rs = stmt.executeQuery();
 
-        while(rs.next()) {
+        while (rs.next()) {
 
             Integer user_id = rs.getInt("id_user");
             String firstName = rs.getString("first_name");
@@ -75,11 +75,40 @@ public class CodecoolerDAO {
 
             Codecooler codecooler = new Codecooler(firstName, lastName, login, password, email, role, user_id);
 
+            stmt = connection.prepareStatement("SELECT * " +
+                    "FROM codecooler WHERE id_user ='" + codecooler.getUserId() + "';");
+
+            List<Integer> list = InventoryDAO.getArtifactsOfCodecooler(codecooler.getUserId());
+            ArrayList<Artifact> artifactList = InventoryDAO.getListOfArtifact(list);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Integer coins = rs.getInt("coins");
+                Integer exp = rs.getInt("experience");
+                codecooler.setExp(exp);
+                codecooler.setInventory(artifactList, coins);
+            }
+
             codecoolerList.add(codecooler);
         }
 
         return codecoolerList;
     }
 
+    public Integer getCodecoolerId(Integer id) throws SQLException {
+        Connection connection = DatabaseConnection.getInstance().getConnection();
 
+        PreparedStatement stmt = connection.prepareStatement("SELECT * " +
+                "FROM codecooler WHERE id_user ='" + id + "'");
+
+        ResultSet rs = stmt.executeQuery();
+
+        Integer user_id = null;
+
+        while (rs.next()) {
+
+            user_id = rs.getInt("id_codecooler");
+        }
+        return user_id;
+    }
 }

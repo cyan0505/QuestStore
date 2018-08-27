@@ -40,10 +40,23 @@
 			<div class="flex-container">
 					<table class="info" id="myTable">
 
-						<tr>
+						{% for artifact in inventory %}
+						
+						<tr><div class="card-container">
+							<div class="card-title">
+								<p contenteditable="true">{{ artifact.name }}</p>
+							</div>
+							<div class="card-value">
+								<p contenteditable="true">{{ artifact.price }}</p>
+							</div>
+							<img src="/static/images/Card_artefact.jpg">
+							<div class="card-description">
+								<p contenteditable="true">{{ artifact.description }}</p>
+							</div>
+						</div></tr>
 
-						</tr>
 
+						{% endfor %}
 					</table>
 
 			<footer class="primary-footer">

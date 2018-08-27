@@ -9,7 +9,7 @@
     <body class="bg">
 		<div>
 			<header class="primary-header">
-				<a href="html/index.html" class="btn button-logout">Logout</a>
+				<a href="/logout" class="btn button-logout">Logout</a>
 			</header>
 
 			<section class="hero row">
@@ -40,26 +40,29 @@
 			<div class="flex-container">
 
 				<div class="avatar">
+
 					<img src="/static/images/avatar.jpg" class="avatar-img">
 					<h3><br>{{ mentor.getLogin }}</h3>
+
+
 				</div>
 				<div class="info">
 					<table style="width:100%">
 						<tr>
 							<th>First Name:</th>
-							<td>{{ mentor.getFirstName }}</td>
+							<td>{{ mentor.getFirstName() }}</td>
 						</tr>
 						<tr>
 							<th>Last Name:</th>
-							<td>{{ mentor.getLastName }}</td>
+							<td>{{ mentor.getLastName() }}</td>
 						</tr>
 						<tr>
 							<th>email:</th>
-							<td contenteditable="true">{{ mentor.getEmail }}</td>
+							<td contenteditable="true">{{ mentor.getEmail() }}</td>
 						</tr>
 						<tr>
 							<th>password:</th>
-							<td>{{ mentor.getPassword }}</td>
+							<td>{{ mentor.getPassword() }}</td>
 						</tr>
 					</table>
 				</div>
@@ -70,9 +73,9 @@
 			<footer class="primary-footer">
 					<small>&copy; Ekipa mocna</small>
 				<nav>
-					<a href="http://localhost:8800/mentor/{{ mentor.getId }}">main</a>
-					<a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile">profile</a>
-					<a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact">contact</a>
+					<a href="/mentor">main</a>
+					<a href="/mentor/profile">profile</a>
+					<a href="/mentor/contact">contact</a>
 				</nav>
 			</footer>
 		</div>

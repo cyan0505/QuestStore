@@ -15,13 +15,17 @@
     <body class="bg">
 		<div>
 			<header class="primary-header">
+
 				<a href="/logout" class="btn button-logout">Logout</a>
 				<h1>Exp: 			Coins:			</h1>
+
+
 			</header>
 
 			<section class="hero row">
                 <div class="navbar" id="myNavbar">
                     <div class="primary-nav-left">
+
                         <a href="/mentor" class="btn">main</a>
                         <a href="/mentor/profile" class="btn">profile</a>
                         <a href="/mentor/contact" class="btn active">contact</a>
@@ -30,6 +34,7 @@
                         <a href="/mentor/store" class="btn">store</a>
                         <a href="/mentor/quest" class="btn">quests</a>
                         <a href="/mentor/codecooler" class="btn">codecoolers</a>
+
                         <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                     </div>
                 </div>
@@ -53,6 +58,8 @@
 						<th>Last Name</th>
 						<th>login</th>
 						<th>class</th>
+						<th>Experience</th>
+						<th>Coins</th>
 						<th>
 							<button onclick="addRow()" class="button-add">+</button>
 						</th>
@@ -60,12 +67,14 @@
 
 					<tr class="tablerow">
 						{% for student in studentList %}
-                            <th contenteditable="true">{{ student.studentId }}</th>
+                            <th contenteditable="true">{{ student.userId }}</th>
                             <th contenteditable="true">{{ student.firstName }}</th>
                             <th contenteditable="true">{{ student.lastName }}</th>
                             <th contenteditable="true">{{ student.login }}</th>
                             <th contenteditable="true">{{ student.roomName }}</th>
-                            <th><a class="action-btn" href="">Edit</a><a class="action-btn" href="http://localhost:8000/students/delete/{{ student.studentId }}">Delete</a>
+							<th contenteditable="true">{{ student.exp }}</th>
+							<th contenteditable="true">{{ student.getInventory().getCoins() }}</th>
+                            <th><a class="btn button-logout" href="">Edit</a><a class="btn button-logout" href="http://localhost:8000/students/delete/{{ student.studentId }}">Delete</a><a class="btn button-logout" href="">Grant Reward</a>
                         {% endfor %}
 					</tr>
 

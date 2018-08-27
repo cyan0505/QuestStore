@@ -13,8 +13,10 @@
     <body class="bg">
 
         <header class="primary-header">
+
             <a href="/logout" class="btn button-logout">Logout</a>
             <h1>Exp: 			Coins:			</h1>
+
         </header>
 
 			<section class="hero row">
@@ -60,7 +62,7 @@
                     <div class="card-value">
                         <p contenteditable="true">{{ card.price }}</p>
                     </div>
-                    <img src="/static/assets/stylesheets/Card_artefact.jpg">
+                    <img src="/static/images/Card_artefact.jpg">
                     <div class="card-description">
                         <p contenteditable="true">{{ card.description }}</p>
                     </div>
@@ -77,9 +79,9 @@
     <footer class="primary-footer">
             <small>&copy; Ekipa mocna</small>
                 <nav>
-                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}">main</a>
-                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/profile">profile</a>
-                    <a href="http://localhost:8800/mentor/{{ mentor.getId }}/contact">contact</a>
+                    <a href="/mentor">main</a>
+                    <a href="/mentor/profile">profile</a>
+                    <a href="/mentor/contact">contact</a>
             </nav>
     </footer>
 

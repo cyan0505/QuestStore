@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Quest Store - Contact</title>
-		<link rel="stylesheet" href="/static/assets/stylesheets/main.css">
+		<link rel="stylesheet" href="/static/css/main.css">
 		<link href="https://fonts.googleapis.com/css?family=Jim+Nightshade" rel="stylesheet">
 
         <script src="static/js/html/scripts.js" type="text/javascript"></script>
@@ -12,21 +12,21 @@
     <body class="bg">
 		<div>
 			<header class="primary-header">
-			    <a href="http://localhost:8800/static/index.html" class="btn button-logout">Logout</a>
+			    <a href="/logout" class="btn button-logout">Logout</a>
                 <h1>Exp: {{ codecooler.getExp }}			Coins:	{{ codecooler.getInventory.getCoins }}		</h1>
 			</header>
 
 			<section class="hero row">
 				<div class="navbar" id="myNavbar">
 					<div class="primary-nav-left">
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}" class="btn">main</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/profile" class="btn">profile</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/contact" class="btn active">contact</a>
+						<a href="/codecooler" class="btn active">main</a>
+						<a href="/codecooler/profile" class="btn">profile</a>
+						<a href="/codecooler/contact" class="btn">contact</a>
 					</div>
 					<div class="primary-nav-right">
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/store" class="btn">store</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/quest" class="btn">quests</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getLogin }}/inventory" class="btn">inventory</a>
+						<a href="/codecooler/store" class="btn">store</a>
+						<a href="/codecooler/quest" class="btn">quests</a>
+						<a href="/codecooler/inventory" class="btn">inventory</a>
 						<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 					</div>
 				</div>
@@ -62,9 +62,9 @@
 			<footer class="primary-footer">
 				<small>&copy; Ekipa mocna</small>
 					<nav>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}">main</a>
-						<a href="http://localhost:8800/codecooler/{{ codecooler.getId }}/profile">profile</a>
-						<a href="http://localhost:8800/codecoler/{{ codecooler.getId }}/contact">contact</a>
+					<a href="/codecooler">main</a>
+					<a href="/codecooler/profile">profile</a>
+					<a href="/codecoler/contact">contact</a>
 					</nav>
 			</footer>
 		</div>
