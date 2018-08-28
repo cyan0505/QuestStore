@@ -17,7 +17,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
-
 import java.io.IOException;
 import java.net.HttpCookie;
 import java.net.URI;
